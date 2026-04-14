@@ -19,15 +19,17 @@ code: |
   	}
   }
 ---
-You can skip the index or value by assigning to `_`.
+Don't need both the index and value? Use `_` to discard whichever one you don't want.
 
 ```go
-  for i, _ := range pow
-  for _, value := range pow
+for i, _ := range pow
+for _, value := range pow
 ```
 
-If you only want the index, you can omit the second variable.
+If you only want the index, drop the second variable entirely:
 
 ```go
-  for i := range pow
+for i := range pow
 ```
+
+**Try it:** Change the first loop to use `_` for the index and print only the computed values.

@@ -16,6 +16,4 @@ code: |
   	fmt.Println(i, j, c, python, java)
   }
 ---
-A var declaration can include initializers, one per variable.
-
-If an initializer is present, the type can be omitted; the variable will take the type of the initializer.
+You can initialize variables right in the `var` declaration. When you do, the type is optional — Go infers it from the value you provide.

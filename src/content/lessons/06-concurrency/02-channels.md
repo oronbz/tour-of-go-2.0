@@ -28,7 +28,7 @@ code: |
   	fmt.Println(x, y, x+y)
   }
 ---
-Channels are a typed conduit through which you can send and receive values with the channel operator, `<-`.
+**Channels** are how goroutines talk to each other — typed pipes you send values through and receive values from, using the `<-` operator.
 
 ```go
 ch <- v    // Send v to channel ch.
@@ -36,15 +36,12 @@ v := <-ch  // Receive from ch, and
          // assign value to v.
 ```
 
-(The data flows in the direction of the arrow.)
-
-Like maps and slices, channels must be created before use:
+The data flows in the direction of the arrow. Like maps and slices, channels need to be created before use:
 
 ```go
 ch := make(chan int)
 ```
 
-By default, sends and receives block until the other side is ready. This allows goroutines to synchronize without explicit locks or condition variables.
+By default, sends and receives block until both sides are ready. That blocking behavior is the feature — it's built-in synchronization with no locks required.
 
-The example code sums the numbers in a slice, distributing the work between two goroutines.
-Once both goroutines have completed their computation, it calculates the final result.
+**Try it:** the example splits a slice across two goroutines, sums each half in parallel, then collects both results through a single channel. Two receives, two answers, one final sum.

@@ -91,9 +91,15 @@ code: |
   	},
   }
 ---
-In this exercise you'll use Go's concurrency features to parallelize a web crawler.
+Time to put it all together. Your job: make this web crawler actually concurrent.
 
-Modify the `Crawl` function to fetch URLs in parallel without fetching the same URL twice.
+Modify `Crawl` so it fetches URLs in parallel and never visits the same URL twice. The current implementation does neither — it crawls sequentially and will happily re-fetch the same page.
 
-_Hint_: you can keep a cache of the URLs that have been fetched on a map, but maps alone are not
-safe for concurrent use!
+Two things you'll need to solve:
+
+1. **Parallelism** — launch goroutines to fetch URLs concurrently.
+2. **Deduplication** — track which URLs have already been fetched.
+
+A map is the natural choice for tracking visited URLs, but maps are not safe for concurrent use. You'll need a mutex to protect it — or find another approach using channels.
+
+**Try it:** get `Crawl` working so each URL is fetched exactly once, with goroutines doing the work in parallel.

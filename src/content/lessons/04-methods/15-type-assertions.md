@@ -25,28 +25,22 @@ code: |
   	fmt.Println(f)
   }
 ---
-A _type_assertion_ provides access to an interface value's underlying concrete value.
+A **type assertion** lets you pull the concrete value out of an interface.
 
 ```go
 t := i.(T)
 ```
 
-This statement asserts that the interface value `i` holds the concrete type `T`
-and assigns the underlying `T` value to the variable `t`.
+This says: "I know `i` holds a `T` — give me the `T`." If you're wrong, it panics.
 
-If `i` does not hold a `T`, the statement will trigger a panic.
-
-To _test_ whether an interface value holds a specific type,
-a type assertion can return two values: the underlying value
-and a boolean value that reports whether the assertion succeeded.
+The safer form uses two return values:
 
 ```go
 t, ok := i.(T)
 ```
 
-If `i` holds a `T`, then `t` will be the underlying value and `ok` will be true.
+If `i` holds a `T`, you get the value and `ok` is `true`. If not, `ok` is `false`, `t` is the zero value, and there's no panic.
 
-If not, `ok` will be false and `t` will be the zero value of type `T`,
-and no panic occurs.
+This should feel familiar — it's the same pattern as reading from a map.
 
-Note the similarity between this syntax and that of reading from a map.
+**Try it:** the last line in `main` does an unsafe assertion on a `float64`. Run it and watch it panic.

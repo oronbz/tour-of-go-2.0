@@ -24,7 +24,7 @@ code: |
   	fmt.Println(a, z)
   }
 ---
-One of the most ubiquitous interfaces is [`Stringer`](/pkg/fmt/#Stringer) defined by the [`fmt`](/pkg/fmt/) package.
+One of the most useful interfaces in Go is **`Stringer`**, defined by the `fmt` package:
 
 ```go
 type Stringer interface {
@@ -32,5 +32,6 @@ type Stringer interface {
 }
 ```
 
-A `Stringer` is a type that can describe itself as a string. The `fmt` package
-(and many others) look for this interface to print values.
+Any type with a `String() string` method can describe itself as a string. The `fmt` package checks for this interface when printing values.
+
+**Try it:** `Person` implements `Stringer` here. Change the format string in `String()` and watch the output update when you print `a` and `z`.

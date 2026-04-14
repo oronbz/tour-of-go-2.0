@@ -19,8 +19,10 @@ code: |
   	fmt.Println("done")
   }
 ---
-Deferred function calls are pushed onto a stack. When a function returns, its
-deferred calls are executed in last-in-first-out order.
+Multiple `defer` calls stack up. When the function returns, they execute in **last-in, first-out** order — like unwinding a stack.
 
-To learn more about defer statements read this
-[blog post](/blog/defer-panic-and-recover).
+This is intentional. It mirrors the natural way resources are acquired and released: if you open A, then B, you close B first, then A. `defer` makes that order automatic.
+
+**Try it** — run the example and watch the numbers count down from 9 to 0.
+
+To dig deeper into `defer`, check out the [blog post on defer, panic, and recover](/blog/defer-panic-and-recover).

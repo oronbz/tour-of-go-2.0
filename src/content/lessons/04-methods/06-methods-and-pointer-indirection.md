@@ -40,8 +40,9 @@ code: |
   	fmt.Println(v, p)
   }
 ---
-Comparing the previous two programs, you might notice that
-functions with a pointer argument must take a pointer:
+Here's something useful: **pointer receiver methods are more flexible than pointer-argument functions**.
+
+A plain function with a pointer argument requires a pointer — no exceptions:
 
 ```go
 var v Vertex
@@ -49,8 +50,7 @@ ScaleFunc(v, 5)  // Compile error!
 ScaleFunc(&v, 5) // OK
 ```
 
-while methods with pointer receivers take either a value or a pointer as the
-receiver when they are called:
+But a method with a pointer receiver accepts both a value and a pointer:
 
 ```go
 var v Vertex
@@ -59,7 +59,4 @@ p := &v
 p.Scale(10) // OK
 ```
 
-For the statement `v.Scale(5)`, even though `v` is a value and not a pointer,
-the method with the pointer receiver is called automatically.
-That is, as a convenience, Go interprets the statement `v.Scale(5)` as
-`(&v).Scale(5)` since the `Scale` method has a pointer receiver.
+Go handles the conversion automatically. `v.Scale(5)` becomes `(&v).Scale(5)` behind the scenes. It's a convenience — you don't have to think about it.

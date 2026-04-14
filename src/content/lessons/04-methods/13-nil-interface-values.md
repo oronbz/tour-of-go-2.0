@@ -23,7 +23,8 @@ code: |
   	fmt.Printf("(%v, %T)\n", i, i)
   }
 ---
-A nil interface value holds neither value nor concrete type.
+A **nil interface value** holds nothing — no concrete value, no concrete type.
 
-Calling a method on a nil interface is a run-time error because there is no
-type inside the interface tuple to indicate which _concrete_ method to call.
+Calling a method on it causes a runtime panic. There's no type information to dispatch on, so Go has nowhere to go.
+
+**Try it:** run this code and see the panic. This is different from the previous example — here `i` has no type at all, not even a nil-valued one.

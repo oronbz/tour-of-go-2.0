@@ -25,6 +25,8 @@ code: |
   	fmt.Println(Abs(v))
   }
 ---
-Remember: a method is just a function with a receiver argument.
+A method is just a function with a receiver. That's it.
 
-Here's `Abs` written as a regular function with no change in functionality.
+Here's `Abs` rewritten as a plain function — same logic, no receiver. The result is identical.
+
+**Try it:** compare this to the previous example. The only structural difference is where `v` appears.

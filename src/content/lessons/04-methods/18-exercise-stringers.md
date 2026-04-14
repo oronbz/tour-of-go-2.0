@@ -24,7 +24,8 @@ code: |
   	}
   }
 ---
-Make the `IPAddr` type implement `fmt.Stringer` to print the address as
-a dotted quad.
+Make `IPAddr` implement `fmt.Stringer` so it prints as a dotted quad.
 
-For instance, `IPAddr{1,`2,`3,`4}` should print as `"1.2.3.4"`.
+For instance, `IPAddr{1, 2, 3, 4}` should print as `"1.2.3.4"`.
+
+Add a `String() string` method to `IPAddr`, then run the code to verify the output looks right.

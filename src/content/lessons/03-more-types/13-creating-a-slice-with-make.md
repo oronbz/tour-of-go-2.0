@@ -29,17 +29,15 @@ code: |
   		s, len(x), cap(x), x)
   }
 ---
-Slices can be created with the built-in `make` function;
-this is how you create dynamically-sized arrays.
+The built-in **`make`** function lets you create a slice with a specific length and capacity — this is how most dynamically-sized slices get created.
 
-The `make` function allocates a zeroed array
-and returns a slice that refers to that array:
+`make` allocates a zeroed array and returns a slice pointing to it:
 
 ```go
 a := make([]int, 5)  // len(a)=5
 ```
 
-To specify a capacity, pass a third argument to `make`:
+Pass a third argument to set the capacity separately from the length:
 
 ```go
 b := make([]int, 0, 5) // len(b)=0, cap(b)=5
@@ -49,3 +47,5 @@ b := make([]int, 0, 5) // len(b)=0, cap(b)=5
 b = b[:cap(b)] // len(b)=5, cap(b)=5
 b = b[1:]      // len(b)=4, cap(b)=4
 ```
+
+**Try it:** Experiment with different length/capacity combinations and watch `printSlice` show how they change.

@@ -24,8 +24,8 @@ code: |
   	fmt.Println(v1, p, v2, v3)
   }
 ---
-A struct literal denotes a newly allocated struct value by listing the values of its fields.
+A **struct literal** creates a new struct value inline by listing its fields.
 
-You can list just a subset of fields by using the `Name:` syntax. (And the order of named fields is irrelevant.)
+You can name each field explicitly using `Name: value` syntax — order doesn't matter, and any fields you leave out default to zero. Or skip the names and list values positionally.
 
-The special prefix `&` returns a pointer to the struct value.
+Prefix with `&` to get a pointer to the struct instead of a copy.

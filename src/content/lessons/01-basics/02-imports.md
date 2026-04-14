@@ -16,13 +16,13 @@ code: |
   	fmt.Printf("Now you have %g problems.\n", math.Sqrt(7))
   }
 ---
-This code groups the imports into a parenthesized, "factored" import statement.
+This code groups **imports** into a parenthesized, "factored" import statement. You'll see this pattern everywhere in Go code.
 
-You can also write multiple import statements, like:
+You could write separate import statements instead:
 
 ```go
 import "fmt"
 import "math"
 ```
 
-But it is good style to use the factored import statement.
+But the factored style is preferred — it's cleaner and easier to scan.

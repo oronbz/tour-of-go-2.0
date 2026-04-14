@@ -26,11 +26,10 @@ code: |
   	fmt.Println(f.Abs())
   }
 ---
-You can declare a method on non-struct types, too.
+Methods aren't limited to structs. You can define them on any type — as long as it's defined in the same package.
 
-In this example we see a numeric type `MyFloat` with an `Abs` method.
+Here, `MyFloat` is a numeric type with its own `Abs` method. No struct needed.
 
-You can only declare a method with a receiver whose type is defined in the same
-package as the method.
-You cannot declare a method with a receiver whose type is defined in another
-package (which includes the built-in types such as `int`).
+One rule: you can't define a method on a type from another package. That means no adding methods to `int`, `string`, or any other built-in type directly.
+
+**Try it:** change `MyFloat` to a negative value and watch `Abs` handle it.

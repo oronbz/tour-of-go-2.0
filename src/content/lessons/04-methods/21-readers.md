@@ -28,21 +28,14 @@ code: |
   	}
   }
 ---
-The `io` package specifies the `io.Reader` interface,
-which represents the read end of a stream of data.
-
-The Go standard library contains [many implementations](https://cs.opensource.google/search?q=Read%5C(%5Cw%2B%5Cs%5C%5B%5C%5Dbyte%5C)&ss=go%2Fgo) of this interface, including files, network connections, compressors, ciphers, and others.
-
-The `io.Reader` interface has a `Read` method:
+The `io` package defines **`io.Reader`** — one of the most important interfaces in Go's standard library.
 
 ```go
 func (T) Read(b []byte) (n int, err error)
 ```
 
-`Read` populates the given byte slice with data and returns the number of bytes
-populated and an error value. It returns an `io.EOF` error when the stream
-ends.
+`Read` fills a byte slice with data and returns how many bytes it wrote, plus any error. When the stream is done, it returns `io.EOF`.
 
-The example code creates a
-[`strings.Reader`](/pkg/strings/#Reader)
-and consumes its output 8 bytes at a time.
+This one interface powers files, network connections, HTTP bodies, compressors, ciphers, and more. Anything that streams data implements it.
+
+**Try it:** this example reads a string 8 bytes at a time. Watch the output to see how `Read` works through the data chunk by chunk until it hits `io.EOF`.

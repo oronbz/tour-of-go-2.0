@@ -17,20 +17,18 @@ code: |
   	fmt.Println(sum)
   }
 ---
-Go has only one looping construct, the `for` loop.
+Go keeps it simple — there's only **`for`**. No `while`, no `do-while`. Just `for`.
 
-The basic `for` loop has three components separated by semicolons:
+The basic `for` loop has three components, separated by semicolons:
 
-- the init statement: executed before the first iteration
-- the condition expression: evaluated before every iteration
-- the post statement: executed at the end of every iteration
+- **init statement**: runs once before the first iteration
+- **condition expression**: checked before every iteration
+- **post statement**: runs at the end of every iteration
 
-The init statement will often be a short variable declaration, and the
-variables declared there are visible only in the scope of the `for`
-statement.
+The init statement is usually a short variable declaration. Variables declared there are scoped to the `for` block — they don't leak out.
 
-The loop will stop iterating once the boolean condition evaluates to `false`.
+The loop stops as soon as the condition evaluates to `false`.
 
-*Note:* Unlike other languages like C, Java, or JavaScript there are no parentheses
-surrounding the three components of the `for` statement and the braces `{`}` are
-always required.
+One thing to notice: unlike C, Java, or JavaScript, there are no parentheses around the three components. The braces `{}` are always required, though.
+
+**Give it a shot** — run the example and change the condition or step to see what happens.

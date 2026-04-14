@@ -17,7 +17,6 @@ code: |
   	}
   }
 ---
-The zero value of a slice is `nil`.
+The zero value of a slice is `nil`. A **nil slice** has no underlying array, and both its length and capacity are 0.
 
-A nil slice has a length and capacity of 0
-and has no underlying array.
+You can pass a nil slice to `append` — it works fine. But you can't index into it.

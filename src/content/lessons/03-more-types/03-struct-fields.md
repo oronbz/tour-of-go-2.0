@@ -20,4 +20,6 @@ code: |
   	fmt.Println(v.X)
   }
 ---
-Struct fields are accessed using a dot.
+Access **struct fields** with a dot. Read them, write them — same syntax either way.
+
+**Try it:** Change `v.X = 4` to a different value and see the output update.

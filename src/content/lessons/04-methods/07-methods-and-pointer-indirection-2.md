@@ -34,9 +34,9 @@ code: |
   	fmt.Println(AbsFunc(*p))
   }
 ---
-The equivalent thing happens in the reverse direction.
+The same flexibility works in reverse for **value receivers**.
 
-Functions that take a value argument must take a value of that specific type:
+A function taking a value argument requires exactly a value — pass a pointer and it won't compile:
 
 ```go
 var v Vertex
@@ -44,8 +44,7 @@ fmt.Println(AbsFunc(v))  // OK
 fmt.Println(AbsFunc(&v)) // Compile error!
 ```
 
-while methods with value receivers take either a value or a pointer as the
-receiver when they are called:
+But a method with a value receiver accepts both:
 
 ```go
 var v Vertex
@@ -54,4 +53,4 @@ p := &v
 fmt.Println(p.Abs()) // OK
 ```
 
-In this case, the method call `p.Abs()` is interpreted as `(*p).Abs()`.
+When you call `p.Abs()` on a pointer, Go automatically dereferences it: `(*p).Abs()`. Clean and consistent.

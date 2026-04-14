@@ -27,9 +27,9 @@ code: |
   	}
   }
 ---
-Switch cases evaluate cases from top to bottom, stopping when a case succeeds.
+Switch cases are evaluated **top to bottom**, and evaluation stops the moment a case matches. Cases that come after a match are never evaluated.
 
-(For example,
+This matters when your cases have side effects. For example:
 
 ```go
 switch i {
@@ -38,4 +38,4 @@ case f():
 }
 ```
 
-does not call `f` if `i==0`.)
+If `i == 0`, the first case matches immediately — `f()` is never called. Keep that in mind when putting function calls in your cases.

@@ -30,8 +30,8 @@ code: |
   	)
   }
 ---
-Variables declared inside an `if` short statement are also available inside any
-of the `else` blocks.
+A variable declared in an `if` short statement is available in **`else`** blocks too — it lives for the entire `if`/`else` chain.
 
-(Both calls to `pow` return their results before the call to `fmt.Println`
-in `main` begins.)
+This is useful for error handling and conditional logic where you want one variable in play without it escaping into the outer scope.
+
+Note that both calls to `pow` return their results before `fmt.Println` in `main` runs.

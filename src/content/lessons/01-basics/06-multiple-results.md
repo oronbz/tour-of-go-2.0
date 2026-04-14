@@ -18,6 +18,6 @@ code: |
   	fmt.Println(a, b)
   }
 ---
-A function can return any number of results.
+Go functions can return **multiple values** — no need to wrap them in a struct or use output parameters. You'll use this constantly, especially for returning a result alongside an error.
 
-The `swap` function returns two strings.
+Here, `swap` returns two strings and the caller unpacks them directly.

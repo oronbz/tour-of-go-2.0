@@ -26,11 +26,7 @@ code: |
   	do(true)
   }
 ---
-A _type_switch_ is a construct that permits several type assertions in series.
-
-A type switch is like a regular switch statement, but the cases in a type
-switch specify types (not values), and those values are compared against
-the type of the value held by the given interface value.
+Need to branch on multiple types? A **type switch** lets you do several type assertions in one clean construct.
 
 ```go
 switch v := i.(type) {
@@ -43,12 +39,6 @@ default:
 }
 ```
 
-The declaration in a type switch has the same syntax as a type assertion `i.(T)`,
-but the specific type `T` is replaced with the keyword `type`.
+The syntax is like a type assertion — `i.(type)` — except you use the keyword `type` instead of a specific type name. In each case branch, `v` is automatically typed correctly.
 
-This switch statement tests whether the interface value `i`
-holds a value of type `T` or `S`.
-In each of the `T` and `S` cases, the variable `v` will be of type
-`T` or `S` respectively and hold the value held by `i`.
-In the default case (where there is no match), the variable `v` is
-of the same interface type and value as `i`.
+**Try it:** `do(true)` hits the default case. Add a `case bool:` branch and see what happens.

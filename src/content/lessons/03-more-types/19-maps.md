@@ -23,10 +23,14 @@ code: |
   	fmt.Println(m["Bell Labs"])
   }
 ---
-A map maps keys to values.
+**Maps** associate keys with values — like a dictionary or hash table.
 
-The zero value of a map is `nil`.
-A `nil` map has no keys, nor can keys be added.
+The zero value of a map is `nil`. A nil map has no keys and you can't add any. To get a usable map, initialize it with `make`:
 
-The `make` function returns a map of the given type,
-initialized and ready for use.
+```go
+m = make(map[string]Vertex)
+```
+
+That gives you an empty map, ready to use.
+
+**Try it:** Add a second location to the map and print it.

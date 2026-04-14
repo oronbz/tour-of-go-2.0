@@ -25,12 +25,10 @@ code: |
   	fmt.Println(v.Abs())
   }
 ---
-Go does not have classes.
-However, you can define methods on types.
+Go has no classes — but it does have **methods**.
 
-A method is a function with a special _receiver_ argument.
+A **method** is just a function with a special _receiver_ argument. The receiver sits between the `func` keyword and the method name, binding the function to a specific type.
 
-The receiver appears in its own argument list between the `func` keyword and
-the method name.
+In this example, `Abs` has a receiver of type `Vertex` named `v`. That's what makes it a method instead of a plain function.
 
-In this example, the `Abs` method has a receiver of type `Vertex` named `v`.
+**Try it:** run the code and see `Abs()` called on `v` like `v.Abs()`.

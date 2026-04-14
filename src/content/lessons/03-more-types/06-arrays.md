@@ -20,16 +20,12 @@ code: |
   	fmt.Println(primes)
   }
 ---
-The type `[n]T` is an array of `n` values of type `T`.
-
-The expression
+**Arrays** in Go have a fixed size baked into their type. The type `[n]T` is an array of exactly `n` values of type `T`.
 
 ```go
 var a [10]int
 ```
 
-declares a variable `a` as an array of ten integers.
+That declares `a` as ten integers. You can't resize it — the length is part of the type.
 
-An array's length is part of its type, so arrays cannot be resized.
-This seems limiting, but don't worry;
-Go provides a convenient way of working with arrays.
+That sounds limiting, and it is. In practice, you'll reach for slices almost every time. Arrays are mostly the foundation that slices are built on.

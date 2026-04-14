@@ -28,16 +28,22 @@ code: |
   	}
   }
 ---
-A sender can `close` a channel to indicate that no more values will be sent. Receivers can test whether a channel has been closed by assigning a second parameter to the receive expression: after
+When a sender is done, it can **close** the channel to signal "no more values coming." Receivers can detect this:
 
 ```go
 v, ok := <-ch
 ```
 
-`ok` is `false` if there are no more values to receive and the channel is closed.
+`ok` is `false` when the channel is closed and drained. You can also use `range` to pull values until the channel closes — cleaner and idiomatic:
 
-The loop `for`i`:=`range`c` receives values from the channel repeatedly until it is closed.
+```go
+for i := range c { ... }
+```
 
-*Note:* Only the sender should close a channel, never the receiver. Sending on a closed channel will cause a panic.
+A few rules worth knowing:
 
-*Another*note:* Channels aren't like files; you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a `range` loop.
+- Only the **sender** should close a channel. Closing from the receiver side is a bug.
+- Sending to a closed channel causes a **panic**.
+- You don't always need to close. Only close when the receiver needs to know the stream is finished — like when you're using `range`.
+
+**Try it:** remove the `close(c)` call and watch the `range` loop hang forever waiting for values that never come.

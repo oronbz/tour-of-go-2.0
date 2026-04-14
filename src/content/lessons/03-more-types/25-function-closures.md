@@ -27,6 +27,8 @@ code: |
   	}
   }
 ---
-Go functions may be closures. A closure is a function value that references variables from outside its body. The function may access and assign to the referenced variables; in this sense the function is "bound" to the variables.
+A **closure** is a function that captures variables from the scope around it. The function can read and update those variables — and they persist between calls.
 
-For example, the `adder` function returns a closure. Each closure is bound to its own `sum` variable.
+In the example, `adder` returns a closure that accumulates into its own `sum`. Each call to `adder()` creates an independent closure with its own `sum`.
+
+**Try it:** Notice that `pos` and `neg` each have separate state — they don't share `sum`.

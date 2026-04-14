@@ -16,12 +16,12 @@ code: |
   	pic.ShowImage(m)
   }
 ---
-Remember the [picture generator](/tour/moretypes/18) you wrote earlier? Let's write another one, but this time it will return an implementation of `image.Image` instead of a slice of data.
+Remember the picture generator from before? Time to revisit it — but this time, return an `image.Image` instead of a raw slice.
 
-Define your own `Image` type, implement [the necessary methods](/pkg/image/#Image), and call `pic.ShowImage`.
+Define your own `Image` type and implement the three methods the `image.Image` interface requires:
 
-`Bounds` should return a `image.Rectangle`, like `image.Rect(0,`0,`w,`h)`.
+- `Bounds` should return `image.Rect(0, 0, w, h)`
+- `ColorModel` should return `color.RGBAModel`
+- `At` should return a color — use `color.RGBA{v, v, 255, 255}` where `v` is whatever pixel formula you like
 
-`ColorModel` should return `color.RGBAModel`.
-
-`At` should return a color; the value `v` in the last picture generator corresponds to `color.RGBA{v,`v,`255,`255}` in this one.
+Then call `pic.ShowImage` with your type and see the result.

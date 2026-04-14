@@ -28,7 +28,7 @@ code: |
   	fmt.Println(m.At(0, 0).RGBA())
   }
 ---
-[Package image](/pkg/image/#Image) defines the `Image` interface:
+The `image` package defines the **`Image` interface**:
 
 ```go
 package image
@@ -42,10 +42,8 @@ type Image interface {
 }
 ```
 
-*Note*: the `Rectangle` return value of the `Bounds` method is actually an
-[`image.Rectangle`](/pkg/image/#Rectangle), as the
-declaration is inside package `image`.
+Implement those three methods on your type and it's a valid `image.Image` — compatible with the entire standard library's imaging toolchain.
 
-(See [the documentation](/pkg/image/#Image) for all the details.)
+Note: `Rectangle` here is `image.Rectangle` (the declaration is inside the `image` package). `color.Color` and `color.Model` are also interfaces, but you can use the concrete `color.RGBA` and `color.RGBAModel` and not worry about that.
 
-The `color.Color` and `color.Model` types are also interfaces, but we'll ignore that by using the predefined implementations `color.RGBA` and `color.RGBAModel`. These interfaces and types are specified by the [image/color package](/pkg/image/color/).
+**Try it:** this example creates a real `image.RGBA` and prints its bounds and pixel color.

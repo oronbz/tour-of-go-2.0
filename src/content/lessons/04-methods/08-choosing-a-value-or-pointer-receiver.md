@@ -32,16 +32,11 @@ code: |
   	fmt.Printf("After scaling: %+v, Abs: %v\n", v, v.Abs())
   }
 ---
-There are two reasons to use a pointer receiver.
+So when do you use a **pointer receiver** vs a value receiver? Two good reasons to reach for a pointer:
 
-The first is so that the method can modify the value that its receiver points to.
+1. You need to modify the receiver.
+2. You want to avoid copying a large struct on every call.
 
-The second is to avoid copying the value on each method call.
-This can be more efficient if the receiver is a large struct, for example.
+In this example, `Abs` doesn't actually need to modify anything — but it still uses `*Vertex` to stay consistent with `Scale`.
 
-In this example, both `Scale` and `Abs` are methods with receiver type `*Vertex`,
-even though the `Abs` method needn't modify its receiver.
-
-In general, all methods on a given type should have either value or pointer
-receivers, but not a mixture of both.
-(We'll see why over the next few pages.)
+That's the rule: pick one style for all methods on a type. Don't mix value and pointer receivers on the same type. It causes confusion — and problems with interfaces, which you'll see soon.

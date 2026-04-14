@@ -31,10 +31,8 @@ code: |
   	fmt.Println(Abs(v))
   }
 ---
-Here we see the `Abs` and `Scale` methods rewritten as functions.
+Same logic, different form. Here `Abs` and `Scale` are plain functions, not methods.
 
-Again, try removing the `*` from line 16.
-Can you see why the behavior changes?
-What else did you need to change for the example to compile?
+Notice that `Scale` takes a `*Vertex` — it must, because it needs to mutate the value. And the call site has to pass `&v` explicitly.
 
-(If you're not sure, continue to the next page.)
+**Try it:** remove the `*` from `Scale`'s parameter on line 16. What breaks? What else do you have to change to make it compile again?

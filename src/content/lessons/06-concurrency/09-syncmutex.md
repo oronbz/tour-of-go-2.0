@@ -45,20 +45,15 @@ code: |
   	fmt.Println(c.Value("somekey"))
   }
 ---
-We've seen how channels are great for communication among goroutines.
+Channels are perfect when goroutines need to communicate. But sometimes you just need to protect a piece of shared state — no messaging required. That's where a **mutex** comes in.
 
-But what if we don't need communication? What if we just want to make sure only
-one goroutine can access a variable at a time to avoid conflicts?
+**Mutual exclusion** means only one goroutine can access a section of code at a time. Go's [`sync.Mutex`](/pkg/sync/#Mutex) provides exactly that with two methods:
 
-This concept is called _mutual_exclusion_, and the conventional name for the data structure that provides it is _mutex_.
+- `Lock` — claim exclusive access
+- `Unlock` — release it
 
-Go's standard library provides mutual exclusion with
-[`sync.Mutex`](/pkg/sync/#Mutex) and its two methods:
+Wrap the code you want to protect between `Lock` and `Unlock`. Only one goroutine gets through at a time; the rest wait.
 
-- `Lock`
-- `Unlock`
+For cleanup, pair `Lock` with `defer Unlock` — as shown in the `Value` method. The mutex unlocks the moment the function returns, even if it panics.
 
-We can define a block of code to be executed in mutual exclusion by surrounding it
-with a call to `Lock` and `Unlock` as shown on the `Inc` method.
-
-We can also use `defer` to ensure the mutex will be unlocked as in the `Value` method.
+**Try it:** remove the `Lock`/`Unlock` calls and run 1000 concurrent increments. The final count will be wrong — that's a data race in action.

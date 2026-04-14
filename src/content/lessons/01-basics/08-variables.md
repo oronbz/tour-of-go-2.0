@@ -16,6 +16,6 @@ code: |
   	fmt.Println(i, c, python, java)
   }
 ---
-The `var` statement declares a list of variables; as in function argument lists, the type is last.
+The **`var`** statement declares one or more variables. Like function parameters, the type goes at the end.
 
-A `var` statement can be at package or function level. We see both in this example.
+You can use `var` at the package level or inside a function — this example shows both.

@@ -30,14 +30,14 @@ code: |
   	fmt.Printf("(%v, %T)\n", i, i)
   }
 ---
-The interface type that specifies zero methods is known as the _empty_interface_:
+An interface with zero methods is the **empty interface**:
 
 ```go
 interface{}
 ```
 
-An empty interface may hold values of any type.
-(Every type implements at least zero methods.)
+Every type satisfies it — since every type implements at least zero methods. That means `interface{}` can hold any value of any type.
 
-Empty interfaces are used by code that handles values of unknown type.
-For example, `fmt.Print` takes any number of arguments of type `interface{}`.
+You'll see it wherever code needs to handle unknown types: `fmt.Print`, JSON decoding, generic containers. It's Go's escape hatch from the type system.
+
+**Try it:** watch `i` hold an `int`, then a `string`. The `describe` function prints the value and type each time.

@@ -35,9 +35,7 @@ code: |
   	}
   }
 ---
-Go programs express error state with `error` values.
-
-The `error` type is a built-in interface similar to `fmt.Stringer`:
+Go handles errors with values, not exceptions. The built-in **`error`** interface looks like this:
 
 ```go
 type error interface {
@@ -45,11 +43,9 @@ type error interface {
 }
 ```
 
-(As with `fmt.Stringer`, the `fmt` package looks for the `error` interface when
-printing values.)
+Any type with an `Error() string` method satisfies it — the same implicit satisfaction you've seen throughout this chapter.
 
-Functions often return an `error` value, and calling code should handle errors
-by testing whether the error equals `nil`.
+Functions typically return an `error` as their last value. Callers check it:
 
 ```go
 i, err := strconv.Atoi("42")
@@ -60,4 +56,4 @@ if err != nil {
 fmt.Println("Converted integer:", i)
 ```
 
-A nil `error` denotes success; a non-nil `error` denotes failure.
+`nil` means success. Non-nil means something went wrong.

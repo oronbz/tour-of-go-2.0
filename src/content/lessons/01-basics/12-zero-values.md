@@ -18,11 +18,10 @@ code: |
   	fmt.Printf("%v %v %v %q\n", i, f, b, s)
   }
 ---
-Variables declared without an explicit initial value are given their
-_zero_value_.
+Declare a variable without a value and Go gives it a **zero value** automatically. No garbage data, no surprises.
 
-The zero value is:
+- `0` for numeric types
+- `false` for booleans
+- `""` for strings
 
-- `0` for numeric types,
-- `false` for the boolean type, and
-- `""` (the empty string) for strings.
+This means you never have an uninitialized variable in Go.

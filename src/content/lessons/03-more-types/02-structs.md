@@ -18,4 +18,6 @@ code: |
   	fmt.Println(Vertex{1, 2})
   }
 ---
-A `struct` is a collection of fields.
+A **struct** is a collection of fields grouped together under one type. Think of it as a lightweight object — no methods required, just data.
+
+**Try it:** Run the example and see how `Vertex{1, 2}` prints as `{1 2}`.

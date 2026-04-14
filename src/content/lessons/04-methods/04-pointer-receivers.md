@@ -31,23 +31,10 @@ code: |
   	fmt.Println(v.Abs())
   }
 ---
-You can declare methods with pointer receivers.
+Want a method to actually change its receiver? Use a **pointer receiver**.
 
-This means the receiver type has the literal syntax `*T` for some type `T`.
-(Also, `T` cannot itself be a pointer such as `*int`.)
+The syntax is `*T` — a pointer to the type. Here, `Scale` is defined on `*Vertex`, so it can modify `v.X` and `v.Y` directly.
 
-For example, the `Scale` method here is defined on `*Vertex`.
+Without a pointer receiver, the method gets a copy. Changes stay local and disappear. Since methods frequently need to mutate state, pointer receivers are more common than value receivers.
 
-Methods with pointer receivers can modify the value to which the receiver
-points (as `Scale` does here).
-Since methods often need to modify their receiver, pointer receivers are more
-common than value receivers.
-
-Try removing the `*` from the declaration of the `Scale` function on line 16
-and observe how the program's behavior changes.
-
-With a value receiver, the `Scale` method operates on a copy of the original
-`Vertex` value.
-(This is the same behavior as for any other function argument.)
-The `Scale` method must have a pointer receiver to change the `Vertex` value
-declared in the `main` function.
+**Try it:** remove the `*` from `Scale`'s receiver on line 16 and re-run. Notice the output changes — `Scale` no longer affects the original `Vertex`.

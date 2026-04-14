@@ -43,11 +43,8 @@ code: |
   	fmt.Printf("(%v, %T)\n", i, i)
   }
 ---
-If the concrete value inside the interface itself is nil,
-the method will be called with a nil receiver.
+What if the concrete value inside an interface is `nil`? The method still gets called — just with a nil receiver.
 
-In some languages this would trigger a null pointer exception,
-but in Go it is common to write methods that gracefully handle being called
-with a nil receiver (as with the method `M` in this example.)
+In most languages that's a crash waiting to happen. In Go, it's fine as long as your method handles it. See how `M` checks for `nil` and returns early instead of dereferencing a nil pointer.
 
-Note that an interface value that holds a nil concrete value is itself non-nil.
+One important distinction: an interface holding a nil concrete value is **not itself nil**. The interface variable has a type — it just has no value. That's a subtlety worth remembering.

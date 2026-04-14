@@ -23,11 +23,10 @@ code: |
   	io.Copy(os.Stdout, &r)
   }
 ---
-A common pattern is an [io.Reader](/pkg/io/#Reader) that wraps another `io.Reader`, modifying the stream in some way.
+A powerful pattern: an `io.Reader` that wraps another `io.Reader` and transforms the data as it flows through.
 
-For example, the [gzip.NewReader](/pkg/compress/gzip/#NewReader) function takes an `io.Reader` (a stream of compressed data) and returns a `*gzip.Reader` that also implements `io.Reader` (a stream of the decompressed data).
+`gzip.NewReader` works this way — it takes a compressed stream and returns a decompressed one. Same interface, transformed data.
 
-Implement a `rot13Reader` that implements `io.Reader` and reads from an `io.Reader`, modifying the stream by applying the [rot13](https://en.wikipedia.org/wiki/ROT13) substitution cipher to all alphabetical characters.
+Your job: implement `rot13Reader`. It wraps an `io.Reader` and applies the [ROT13](https://en.wikipedia.org/wiki/ROT13) cipher to every alphabetical byte it reads.
 
-The `rot13Reader` type is provided for you.
-Make it an `io.Reader` by implementing its `Read` method.
+The struct is already defined. Add a `Read` method that reads from `r.r` and shifts each letter by 13 positions.

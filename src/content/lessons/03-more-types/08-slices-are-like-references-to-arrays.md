@@ -28,10 +28,8 @@ code: |
   	fmt.Println(names)
   }
 ---
-A slice does not store any data,
-it just describes a section of an underlying array.
+A slice doesn't own its data — it's just a **view into an underlying array**. No copying happens when you slice.
 
-Changing the elements of a slice modifies the
-corresponding elements of its underlying array.
+Because of that, if you change an element through a slice, you're changing the array. And if another slice points to the same part of that array, it sees the change too.
 
-Other slices that share the same underlying array will see those changes.
+**Try it:** Notice how modifying `b[0]` also changes what `a` sees, because both slices overlap on the same underlying array.

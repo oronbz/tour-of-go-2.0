@@ -17,10 +17,8 @@ code: |
   	fmt.Println(add(42, 13))
   }
 ---
-A function can take zero or more arguments.
+**Functions** in Go can take zero or more arguments. Notice that the type comes _after_ the variable name — `x int`, not `int x`. That's different from C or Java, but you'll get used to it fast.
 
-In this example, `add` takes two parameters of type `int`.
+In this example, `add` takes two `int` parameters and returns an `int`.
 
-Notice that the type comes _after_ the variable name.
-
-(For more about why types look the way they do, see the [article on Go's declaration syntax](/blog/gos-declaration-syntax).)
+(Curious why types are written this way? The [Go declaration syntax article](/blog/gos-declaration-syntax) explains the reasoning.)

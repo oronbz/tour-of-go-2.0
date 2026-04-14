@@ -24,6 +24,6 @@ code: |
   	}
   }
 ---
-Switch without a condition is the same as `switch`true`.
+A **switch with no condition** is the same as `switch true` — each case is a boolean expression, and the first one that's true wins.
 
-This construct can be a clean way to write long if-then-else chains.
+This is a great pattern for replacing long `if`-`else` chains. It reads clearly top to bottom, and Go's automatic `break` keeps it tidy. You'll reach for this more than you'd expect.

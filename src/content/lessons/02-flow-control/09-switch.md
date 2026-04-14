@@ -26,12 +26,8 @@ code: |
   	}
   }
 ---
-A `switch` statement is a shorter way to write a sequence of `if`-`else` statements.
-It runs the first case whose value is equal to the condition expression.
+A **`switch`** statement is a cleaner alternative to a long chain of `if`-`else` blocks. It runs the first case that matches — and only that case.
 
-Go's switch is like the one in C, C++, Java, JavaScript, and PHP,
-except that Go only runs the selected case, not all the cases that follow.
-In effect, the `break` statement that is needed at the end of each case in those
-languages is provided automatically in Go.
-Another important difference is that Go's switch cases need not
-be constants, and the values involved need not be integers.
+Here's the big difference from C, Java, or JavaScript: Go does **not** fall through by default. No need to write `break` at the end of every case — Go adds it automatically.
+
+Two more things worth knowing: switch cases don't have to be constants, and the values don't have to be integers. Go is more flexible here than most languages.

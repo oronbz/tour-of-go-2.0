@@ -53,14 +53,12 @@ code: |
   	fmt.Printf("(%v, %T)\n", i, i)
   }
 ---
-Under the hood, interface values can be thought of as a tuple of a value and a
-concrete type:
+Under the hood, an **interface value** is a pair: a concrete value and its type.
 
 ```go
 (value, type)
 ```
 
-An interface value holds a value of a specific underlying concrete type.
+When you call a method on an interface, Go dispatches to the method on the underlying concrete type.
 
-Calling a method on an interface value executes the method of the same name on
-its underlying type.
+**Try it:** the `describe` helper prints both the value and the type for each assignment. Watch how they change as `i` holds first a `*T`, then an `F`.

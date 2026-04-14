@@ -19,6 +19,8 @@ code: |
   	wc.Test(WordCount)
   }
 ---
-Implement `WordCount`.  It should return a map of the counts of each “word” in the string `s`. The `wc.Test` function runs a test suite against the provided function and prints success or failure.
+Implement `WordCount`. It should return a `map[string]int` counting how many times each word appears in `s`.
 
-You might find [strings.Fields](/pkg/strings/#Fields) helpful.
+`wc.Test` will run your function against several test cases and report pass or fail.
+
+Hint: `strings.Fields` splits a string on whitespace — it'll save you some work.

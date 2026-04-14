@@ -26,8 +26,8 @@ code: |
   	)
   }
 ---
-Like `for`, the `if` statement can start with a short statement to execute before the condition.
+Like `for`, **`if`** can start with a short statement that runs before the condition is checked. It's a handy pattern for computing a value and immediately branching on it.
 
-Variables declared by the statement are only in scope until the end of the `if`.
+Variables declared in that short statement are scoped to the `if` block — they vanish after the closing brace.
 
-(Try using `v` in the last `return` statement.)
+**Try it** — attempt to use `v` in the last `return` statement and see the compile error.

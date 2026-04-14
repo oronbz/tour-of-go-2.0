@@ -17,7 +17,8 @@ code: |
   	}
   }
 ---
-The `range` form of the `for` loop iterates over a slice or map.
+Use **`range`** to iterate over a slice or map without managing indices yourself.
 
-When ranging over a slice, two values are returned for each iteration.
-The first is the index, and the second is a copy of the element at that index.
+Each iteration gives you two values: the index, and a copy of the element at that index.
+
+**Try it:** Change the slice values and see how the loop output updates.

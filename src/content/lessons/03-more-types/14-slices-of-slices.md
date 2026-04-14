@@ -32,4 +32,8 @@ code: |
   	}
   }
 ---
-Slices can contain any type, including other slices.
+Slices can hold any type — including other slices. That gives you a **2D slice**, which is handy for grids, tables, or boards.
+
+The example builds a tic-tac-toe board as a `[][]string`. Each row is its own slice.
+
+**Try it:** Finish the game — add a few more moves and see what the board looks like.

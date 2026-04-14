@@ -17,15 +17,15 @@ code: |
   	fmt.Println(add(42, 13))
   }
 ---
-When two or more consecutive named function parameters share a type, you can omit the type from all but the last.
+When consecutive parameters share a type, you can drop the type from all but the last. It's a small shortcut, but you'll see it often.
 
-In this example, we shortened
+Here we shortened:
 
 ```go
 x int, y int
 ```
 
-to
+to:
 
 ```go
 x, y int

@@ -22,8 +22,7 @@ code: |
   	fmt.Println(j) // see the new value of j
   }
 ---
-Go has pointers.
-A pointer holds the memory address of a value.
+**Pointers** hold memory addresses. Instead of copying a value, you point to where it lives.
 
 The type `*T` is a pointer to a `T` value. Its zero value is `nil`.
 
@@ -31,20 +30,18 @@ The type `*T` is a pointer to a `T` value. Its zero value is `nil`.
 var p *int
 ```
 
-The `&` operator generates a pointer to its operand.
+Use `&` to get a pointer to a variable:
 
 ```go
 i := 42
 p = &i
 ```
 
-The `*` operator denotes the pointer's underlying value.
+Use `*` to read or write through that pointer — this is called **dereferencing**:
 
 ```go
 fmt.Println(*p) // read i through the pointer p
 *p = 21         // set i through the pointer p
 ```
 
-This is known as "dereferencing" or "indirecting".
-
-Unlike C, Go has no pointer arithmetic.
+One thing Go doesn't have: pointer arithmetic. No `p++` tricks like in C.

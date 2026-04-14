@@ -31,18 +31,12 @@ code: |
   	fmt.Println(Index(ss, "hello"))
   }
 ---
-Go functions can be written to work on multiple types using type parameters. The
-type parameters of a function appear between brackets, before the function's
-arguments.
+**Generics** let you write one function that works across many types — no duplicating logic, no empty interfaces. The secret is **type parameters**: extra brackets before a function's arguments that say "this function works for any type `T`."
 
 ```go
 func Index[T comparable](s []T, x T) int
 ```
 
-This declaration means that `s` is a slice of any type `T` that fulfills the
-built-in constraint `comparable`. `x` is also a value of the same type.
+Here, `T` must satisfy the built-in constraint `comparable` — meaning Go can use `==` and `!=` on it. That's how the function compares values without knowing their concrete type ahead of time.
 
-`comparable` is a useful constraint that makes it possible to use the `==` and
-`!=` operators on values of the type. In this example, we use it to compare a
-value to all slice elements until a match is found. This `Index` function works
-for any type that supports comparison.
+**Try it:** run the example as-is. `Index` works on both `[]int` and `[]string` with no changes. That's the whole point — write once, use everywhere.

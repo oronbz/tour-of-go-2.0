@@ -30,17 +30,18 @@ code: |
   	fmt.Println(s)
   }
 ---
-A slice literal is like an array literal without the length.
+A **slice literal** is like an array literal — just drop the length.
 
-This is an array literal:
+Array literal:
 
 ```go
 [3]bool{true, true, false}
 ```
 
-And this creates the same array as above,
-then builds a slice that references it:
+Slice literal (creates the same array under the hood, then returns a slice pointing to it):
 
 ```go
 []bool{true, true, false}
 ```
+
+You can use any element type, including structs.

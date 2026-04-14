@@ -28,10 +28,8 @@ code: |
   	fmt.Println(needFloat(Big))
   }
 ---
-Numeric constants are high-precision _values_.
+**Numeric constants** are high-precision values. They don't have a fixed type until they're used — an untyped constant takes whatever type its context requires.
 
-An untyped constant takes the type needed by its context.
+That's why `Big` (a number too large for any integer type) works fine when passed to `needFloat`, but would overflow if passed to `needInt`.
 
-Try printing `needInt(Big)` too.
-
-(An `int` can store at maximum a 64-bit integer, and sometimes less.)
+**Try it** — add `needInt(Big)` to `main` and see what happens. (`int` maxes out at 64 bits, sometimes less.)

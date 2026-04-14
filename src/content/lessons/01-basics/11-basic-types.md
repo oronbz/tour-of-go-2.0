@@ -44,7 +44,7 @@ code: |
   	fmt.Printf("Type: %T Value: %v\n", z, z)
   }
 ---
-Go's basic types are
+Go's **basic types** are:
 
 ```go
 bool
@@ -76,9 +76,6 @@ float32 float64
 complex64 complex128
 ```
 
-The example shows variables of several types,
-and also that variable declarations may be "factored" into blocks,
-as with import statements.
+Like imports, variable declarations can be grouped into a factored block — handy for package-level vars.
 
-The `int`, `uint`, and `uintptr` types are usually 32 bits wide on 32-bit systems and 64 bits wide on 64-bit systems.
-When you need an integer value you should use `int` unless you have a specific reason to use a sized or unsigned integer type.
+Reach for `int` by default for integers. It's 32 or 64 bits depending on your platform, and it's what most Go code uses. Only go for a sized or unsigned type when you have a specific reason.

@@ -22,4 +22,6 @@ code: |
   	fmt.Println(m)
   }
 ---
-If the top-level type is just a type name, you can omit it from the elements of the literal.
+When the value type in a map literal is a named type, you can drop the type name from each element. Go can infer it.
+
+Compare the previous example's `Vertex{...}` with this one's `{...}` — same result, less noise.

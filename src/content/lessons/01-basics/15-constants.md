@@ -20,8 +20,6 @@ code: |
   	fmt.Println("Go rules?", Truth)
   }
 ---
-Constants are declared like variables, but with the `const` keyword.
+**Constants** are declared like variables but with the `const` keyword. They can hold character, string, boolean, or numeric values.
 
-Constants can be character, string, boolean, or numeric values.
-
-Constants cannot be declared using the `:=` syntax.
+One rule: you can't use `:=` to declare a constant. That shorthand is for variables only.

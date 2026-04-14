@@ -31,22 +31,16 @@ code: |
   	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
   }
 ---
-It is common to append new elements to a slice, and so Go provides a built-in
-`append` function. The [documentation](/pkg/builtin/#append)
-of the built-in package describes `append`.
+To grow a slice, use the built-in **`append`** function:
 
 ```go
 func append(s []T, vs ...T) []T
 ```
 
-The first parameter `s` of `append` is a slice of type `T`, and the rest are
-`T` values to append to the slice.
+You pass in a slice and one or more values, and you get back a new slice with those values added at the end.
 
-The resulting value of `append` is a slice containing all the elements of the
-original slice plus the provided values.
+If the underlying array is too small to fit the new values, Go allocates a bigger one automatically. The returned slice points to the new array.
 
-If the backing array of `s` is too small to fit all the given values a bigger
-array will be allocated. The returned slice will point to the newly allocated
-array.
+You can append multiple values at once: `append(s, 2, 3, 4)`.
 
-(To learn more about slices, read the [Slices: usage and internals](/blog/go-slices-usage-and-internals) article.)
+**Try it:** Start with a nil slice and keep appending. Watch how `len` and `cap` grow.

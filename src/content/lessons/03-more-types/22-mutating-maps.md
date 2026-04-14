@@ -43,36 +43,33 @@ code: |
   	fmt.Println("The value:", v, "Present?", ok)
   }
 ---
-Insert or update an element in map `m`:
+Here's your map toolkit:
 
+Insert or update:
 ```go
 m[key] = elem
 ```
 
-Retrieve an element:
-
+Retrieve:
 ```go
 elem = m[key]
 ```
 
-Delete an element:
-
+Delete:
 ```go
 delete(m, key)
 ```
 
-Test that a key is present with a two-value assignment:
-
+Check if a key exists using the two-value form:
 ```go
 elem, ok = m[key]
 ```
 
-If `key` is in `m`, `ok` is `true`. If not, `ok` is `false`.
+If `key` is in the map, `ok` is `true`. If not, `ok` is `false` and `elem` is the zero value for that type.
 
-If `key` is not in the map, then `elem` is the zero value for the map's element type.
-
-*Note:* If `elem` or `ok` have not yet been declared you could use a short declaration form:
-
+If `elem` and `ok` aren't declared yet, use `:=`:
 ```go
 elem, ok := m[key]
 ```
+
+**Try it:** Delete the `"Answer"` key and then check whether it's present — watch `ok` go `false`.

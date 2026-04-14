@@ -33,9 +33,7 @@ code: |
   	}
   }
 ---
-The `default` case in a `select` is run if no other case is ready.
-
-Use a `default` case to try a send or receive without blocking:
+Add a **`default`** case to a `select` and it becomes non-blocking. If none of the channel cases are ready, `default` runs immediately instead of blocking.
 
 ```go
 select {
@@ -45,3 +43,7 @@ default:
 	// receiving from c would block
 }
 ```
+
+This is the pattern for "try to communicate, but don't wait." It's useful for polling or checking channel state without getting stuck.
+
+**Try it:** watch the output — the `default` case fires repeatedly (printing `.`) while the goroutine waits between ticks and the final boom.

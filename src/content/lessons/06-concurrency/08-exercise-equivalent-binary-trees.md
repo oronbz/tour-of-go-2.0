@@ -20,24 +20,21 @@ code: |
   func main() {
   }
 ---
-*1.* Implement the `Walk` function.
+**Step 1.** Implement the `Walk` function — do an in-order traversal of the tree and send each value to `ch`.
 
-*2.* Test the `Walk` function.
-
-The function `tree.New(k)` constructs a randomly-structured (but always sorted) binary tree holding the values `k`, `2k`, `3k`, ..., `10k`.
-
-Create a new channel `ch` and kick off the walker:
+**Step 2.** Test `Walk`. The function `tree.New(k)` builds a randomly structured (but always sorted) binary tree with values `k`, `2k`, `3k`, ..., `10k`. Kick off a walk and read from the channel:
 
 ```go
 go Walk(tree.New(1), ch)
 ```
 
-Then read and print 10 values from the channel. It should be the numbers 1, 2, 3, ..., 10.
+Read 10 values from `ch` — you should get 1, 2, 3, ..., 10 in order.
 
-*3.* Implement the `Same` function using `Walk` to determine whether `t1` and `t2` store the same values.
+**Step 3.** Implement `Same` using `Walk`. Walk both trees and compare the sequences value by value. If they match throughout, return `true`.
 
-*4.* Test the `Same` function.
+**Step 4.** Test `Same`.
 
-`Same(tree.New(1),`tree.New(1))` should return true, and `Same(tree.New(1),`tree.New(2))` should return false.
+- `Same(tree.New(1), tree.New(1))` should return `true`
+- `Same(tree.New(1), tree.New(2))` should return `false`
 
-The documentation for `Tree` can be found [here](https://godoc.org/golang.org/x/tour/tree#Tree).
+The `Tree` type documentation is [here](https://godoc.org/golang.org/x/tour/tree#Tree).

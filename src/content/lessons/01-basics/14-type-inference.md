@@ -14,16 +14,16 @@ code: |
   	fmt.Printf("v is of type %T\n", v)
   }
 ---
-When declaring a variable without specifying an explicit type (either by using the `:=` syntax or `var`=` expression syntax), the variable's type is inferred from the value on the right hand side.
+When you use `:=` or `var` without a type, Go infers the type from the right-hand side. This is **type inference** — less typing, same safety.
 
-When the right hand side of the declaration is typed, the new variable is of that same type:
+If the right-hand side is a typed value, the new variable gets that type:
 
 ```go
 var i int
 j := i // j is an int
 ```
 
-But when the right hand side contains an untyped numeric constant, the new variable may be an `int`, `float64`, or `complex128` depending on the precision of the constant:
+If it's an untyped numeric constant, Go picks the type based on precision:
 
 ```go
 i := 42           // int
@@ -31,4 +31,4 @@ f := 3.142        // float64
 g := 0.867 + 0.5i // complex128
 ```
 
-Try changing the initial value of `v` in the example code and observe how its type is affected.
+**Give it a shot** — change the value of `v` in the example and watch how its inferred type changes.

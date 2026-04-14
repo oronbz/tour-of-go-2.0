@@ -17,4 +17,6 @@ code: |
   	fmt.Println(sum)
   }
 ---
-At that point you can drop the semicolons: C's `while` is spelled `for` in Go.
+Once you drop the init and post, you can drop the semicolons too. What you're left with is Go's version of **`while`** — except it's still called `for`.
+
+C's `while` is spelled `for` in Go. Same idea, cleaner syntax, one less keyword to remember.

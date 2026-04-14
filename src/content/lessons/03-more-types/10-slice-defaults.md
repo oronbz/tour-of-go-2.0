@@ -22,17 +22,9 @@ code: |
   	fmt.Println(s)
   }
 ---
-When slicing, you may omit the high or low bounds to use their defaults instead.
+When slicing, you can omit either bound and Go fills in the **default**: `0` for the low end, and the slice's length for the high end.
 
-The default is zero for the low bound and the length of the slice for the high bound.
-
-For the array
-
-```go
-var a [10]int
-```
-
-these slice expressions are equivalent:
+So for a 10-element array, all four of these mean the same thing:
 
 ```go
 a[0:10]
@@ -40,3 +32,5 @@ a[:10]
 a[0:]
 a[:]
 ```
+
+**Try it:** Rewrite the slice operations in the example using different combinations of defaults.

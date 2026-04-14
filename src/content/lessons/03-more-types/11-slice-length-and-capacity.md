@@ -30,17 +30,11 @@ code: |
   	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
   }
 ---
-A slice has both a _length_ and a _capacity_.
+Every slice has two numbers you should know: **length** and **capacity**.
 
-The length of a slice is the number of elements it contains.
+- **Length** (`len(s)`): how many elements the slice currently holds.
+- **Capacity** (`cap(s)`): how many elements are available in the underlying array, starting from the slice's first element.
 
-The capacity of a slice is the number of elements in the underlying array,
-counting from the first element in the slice.
+You can grow a slice by re-slicing it — but only up to its capacity. Go beyond that and you'll get a runtime panic.
 
-The length and capacity of a slice `s` can be obtained using the expressions
-`len(s)` and `cap(s)`.
-
-You can extend a slice's length by re-slicing it,
-provided it has sufficient capacity.
-Try changing one of the slice operations in the example program to extend it
-beyond its capacity and see what happens.
+**Try it:** Modify one of the slice operations in the example to exceed its capacity and observe the error.

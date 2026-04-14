@@ -21,8 +21,8 @@ code: |
   	}
   }
 ---
-Let's have some fun with functions.
+Put closures to work.
 
-Implement a `fibonacci` function that returns a function (a closure) that
-returns successive [fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number)
-(0, 1, 1, 2, 3, 5, ...).
+Implement `fibonacci` so that it returns a closure. Each time you call that closure, it returns the next number in the Fibonacci sequence: 0, 1, 1, 2, 3, 5, ...
+
+The state (the previous two numbers) lives inside the closure — no global variables needed.

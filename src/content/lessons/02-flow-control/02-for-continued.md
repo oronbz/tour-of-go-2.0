@@ -17,4 +17,6 @@ code: |
   	fmt.Println(sum)
   }
 ---
-The init and post statements are optional.
+The init and post statements are optional — drop them when you don't need them.
+
+That leaves just the condition, with the semicolons still there as placeholders. It's a bit awkward-looking, which is exactly why Go takes this one step further.

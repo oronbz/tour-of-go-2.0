@@ -48,10 +48,8 @@ code: |
   	return math.Sqrt(v.X*v.X + v.Y*v.Y)
   }
 ---
-An _interface_type_ is defined as a set of method signatures.
+An **interface type** is a set of method signatures. Any type that implements those methods satisfies the interface — automatically.
 
-A value of interface type can hold any value that implements those methods.
+A variable of interface type can hold any value that implements the required methods.
 
-*Note:* There is an error in the example code on line 22.
-`Vertex` (the value type) doesn't implement `Abser` because
-the `Abs` method is defined only on `*Vertex` (the pointer type).
+**Note:** There's an intentional error on line 22. `Vertex` (the value type) doesn't implement `Abser` because `Abs` is defined on `*Vertex` (the pointer type). **Try it:** run the code and read the compile error, then fix it by changing `a = v` to `a = &v`.

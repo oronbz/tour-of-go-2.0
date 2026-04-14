@@ -16,26 +16,16 @@ code: |
   	fmt.Println(s)
   }
 ---
-An array has a fixed size.
-A slice, on the other hand, is a dynamically-sized,
-flexible view into the elements of an array.
-In practice, slices are much more common than arrays.
+**Slices** are what you'll actually use day-to-day. Unlike arrays, they're dynamically sized — a flexible window into an underlying array.
 
-The type `[]T` is a slice with elements of type `T`.
+The type `[]T` is a slice of `T` values.
 
-A slice is formed by specifying two indices, a low and
-high bound, separated by a colon:
+Create a slice with a low and high bound separated by a colon:
 
 ```go
 a[low : high]
 ```
 
-This selects a half-open range which includes the first
-element, but excludes the last one.
+This is a half-open range: it includes the element at `low`, but excludes `high`. So `a[1:4]` gives you elements at indices 1, 2, and 3.
 
-The following expression creates a slice which includes
-elements 1 through 3 of `a`:
-
-```go
-a[1:4]
-```
+**Try it:** Change the indices in `primes[1:4]` to see different subsets of the array.

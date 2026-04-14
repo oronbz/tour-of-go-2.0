@@ -16,10 +16,10 @@ code: |
   	pic.Show(Pic)
   }
 ---
-Implement `Pic`. It should return a slice of length `dy`, each element of which is a slice of `dx` 8-bit unsigned integers. When you run the program, it will display your picture, interpreting the integers as grayscale (well, bluescale) values.
+Implement `Pic`. It should return a `[][]uint8` of size `dy` x `dx`. The program will render your values as a bluescale image.
 
-The choice of image is up to you. Interesting functions include `(x+y)/2`, `x*y`, and `x^y`.
+You choose the math. Try `(x+y)/2`, `x*y`, or `x^y` and see what patterns emerge.
 
-(You need to use a loop to allocate each `[]uint8` inside the `[][]uint8`.)
-
-(Use `uint8(intValue)` to convert between types.)
+A few hints:
+- You'll need a loop to allocate each inner `[]uint8`.
+- Use `uint8(intValue)` to convert your computed values to the right type.

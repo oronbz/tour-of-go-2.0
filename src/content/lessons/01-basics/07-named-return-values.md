@@ -19,10 +19,8 @@ code: |
   	fmt.Println(split(17))
   }
 ---
-Go's return values may be named. If so, they are treated as variables defined at the top of the function.
+Go lets you give return values **names**. When you do, they act as variables initialized at the top of the function — and they serve as documentation for what the function actually returns.
 
-These names should be used to document the meaning of the return values.
+A bare `return` with no arguments sends back the current values of those named returns. This is called a **naked return**.
 
-A `return` statement without arguments returns the named return values. This is known as a "naked" return.
-
-Naked return statements should be used only in short functions, as with the example shown here. They can harm readability in longer functions.
+Keep naked returns to short functions only. In longer functions, they make the code harder to follow.

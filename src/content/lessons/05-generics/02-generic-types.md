@@ -17,11 +17,8 @@ code: |
   func main() {
   }
 ---
-In addition to generic functions, Go also supports generic types. A type can
-be parameterized with a type parameter, which could be useful for implementing
-generic data structures.
+**Generic types** take the same idea further — not just functions, but entire data structures can be parameterized. A **type parameter** on a struct means one definition covers all the cases.
 
-This example demonstrates a simple type declaration for a singly-linked list
-holding any type of value.
+Here, `List[T any]` is a singly-linked list that holds values of whatever type you choose. `any` is Go's alias for the empty interface — no constraints, any type is welcome.
 
-As an exercise, add some functionality to this list implementation.
+**Try it:** add methods to this list. A `Push` that prepends a value, or a `String` method that prints all values — both work regardless of whether `T` is `int`, `string`, or anything else.

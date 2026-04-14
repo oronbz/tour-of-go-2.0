@@ -26,6 +26,8 @@ code: |
   	fmt.Println(compute(math.Pow))
   }
 ---
-Functions are values too. They can be passed around just like other values.
+In Go, **functions are values**. You can assign them to variables, pass them into other functions, and return them — just like any other type.
 
-Function values may be used as function arguments and return values.
+This makes patterns like callbacks and higher-order functions straightforward.
+
+**Try it:** Pass `math.Sqrt` to `compute` and see what comes back.

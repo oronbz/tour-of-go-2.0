@@ -34,6 +34,8 @@ code: |
   	fibonacci(c, quit)
   }
 ---
-The `select` statement lets a goroutine wait on multiple communication operations.
+**Select** is like a `switch` for channels. It lets a goroutine wait on multiple channel operations at once and act on whichever is ready first.
 
-A `select` blocks until one of its cases can run, then it executes that case.  It chooses one at random if multiple are ready.
+A `select` blocks until one of its cases can proceed. If multiple cases are ready at the same time, Go picks one at random — no priority, no starvation.
+
+**Try it:** trace through the fibonacci example. The goroutine in `main` reads 10 values then sends on `quit`. The `select` inside `fibonacci` handles both the "produce a value" case and the "stop now" case cleanly — no polling, no flags.

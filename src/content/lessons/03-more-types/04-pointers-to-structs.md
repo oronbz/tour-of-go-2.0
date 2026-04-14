@@ -21,9 +21,8 @@ code: |
   	fmt.Println(v)
   }
 ---
-Struct fields can be accessed through a struct pointer.
+You can access struct fields through a **pointer to a struct** — no extra steps needed.
 
-To access the field `X` of a struct when we have the struct pointer `p` we could
-write `(*p).X`.
-However, that notation is cumbersome, so the language permits us instead to
-write just `p.X`, without the explicit dereference.
+Technically, you'd write `(*p).X` to dereference `p` and then access `X`. But Go lets you drop the parentheses and just write `p.X`. It means the same thing and is much easier to read.
+
+**Try it:** Change the value assigned to `p.X` and watch `v` update — they point to the same data.

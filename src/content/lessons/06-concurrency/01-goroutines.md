@@ -24,18 +24,14 @@ code: |
   	say("hello")
   }
 ---
-A _goroutine_ is a lightweight thread managed by the Go runtime.
+**Goroutines** are Go's secret weapon — lightweight threads managed by the runtime. Spin up thousands of them without breaking a sweat.
 
 ```go
 go f(x, y, z)
 ```
 
-starts a new goroutine running
+That's it. One keyword and `f` runs concurrently. The arguments (`f`, `x`, `y`, `z`) are evaluated in the current goroutine — execution of `f` happens in the new one.
 
-```go
-f(x, y, z)
-```
+Goroutines share the same address space, so if they touch shared memory you need to synchronize. The [`sync`](/pkg/sync/) package covers that, but Go's preferred tool is channels — you'll see why shortly.
 
-The evaluation of `f`, `x`, `y`, and `z` happens in the current goroutine and the execution of `f` happens in the new goroutine.
-
-Goroutines run in the same address space, so access to shared memory must be synchronized. The [`sync`](/pkg/sync/) package provides useful primitives, although you won't need them much in Go as there are other primitives. (See the next slide.)
+**Try it:** watch how "world" and "hello" interleave. The scheduler decides the order, and it can change each run.
