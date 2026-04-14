@@ -6,21 +6,20 @@ description: "Every Go program is made up of packages."
 isExercise: false
 code: |
   package main
-
+  
   import (
-    "fmt"
-    "math/rand"
+  	"fmt"
+  	"math/rand"
   )
-
+  
   func main() {
-    fmt.Println("My favorite number is", rand.Intn(10))
+  	fmt.Println("My favorite number is", rand.Intn(10))
   }
 ---
+Every Go program is made up of packages.
 
-Every Go program is made up of packages. Programs start running in package `main`.
+Programs start running in package `main`.
 
-This program uses packages with import paths `"fmt"` and `"math/rand"`.
+This program is using the packages with import paths `"fmt"` and `"math/rand"`.
 
-By convention, the package name matches the last element of the import path — so `"math/rand"` starts with `package rand`.
-
-**Give it a shot** — hit Run in the playground and see what number you get. Run it again — notice it changes.
+By convention, the package name is the same as the last element of the import path. For instance, the `"math/rand"` package comprises files that begin with the statement `package`rand`.
