@@ -1,8 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Go-cyan hexagon background -->
-  <path d="M32 4L56 18V46L32 60L8 46V18L32 4Z" fill="#00ADD8"/>
-  <!-- Inner darker hexagon -->
-  <path d="M32 10L50 21V43L32 54L14 43V21L32 10Z" fill="#007D9C"/>
-  <!-- Stylized "Go" letter -->
-  <text x="32" y="40" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">Go</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Ears -->
+  <ellipse cx="16" cy="14" rx="8" ry="10" fill="#00ADD8"/>
+  <ellipse cx="48" cy="14" rx="8" ry="10" fill="#00ADD8"/>
+  <ellipse cx="16" cy="14" rx="5" ry="7" fill="#5DC9E2"/>
+  <ellipse cx="48" cy="14" rx="5" ry="7" fill="#5DC9E2"/>
+  <!-- Head -->
+  <ellipse cx="32" cy="34" rx="26" ry="28" fill="#00ADD8"/>
+  <!-- Eyes (white) -->
+  <ellipse cx="22" cy="28" rx="9" ry="10" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <ellipse cx="42" cy="28" rx="9" ry="10" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <!-- Pupils -->
+  <circle cx="25" cy="29" r="4.5" fill="#1a1a1a"/>
+  <circle cx="45" cy="29" r="4.5" fill="#1a1a1a"/>
+  <!-- Pupil highlights -->
+  <circle cx="26.5" cy="27.5" r="1.5" fill="#fff"/>
+  <circle cx="46.5" cy="27.5" r="1.5" fill="#fff"/>
+  <!-- Nose/snout area -->
+  <ellipse cx="32" cy="42" rx="12" ry="8" fill="#E0D5C0"/>
+  <!-- Nose -->
+  <ellipse cx="32" cy="39" rx="3" ry="2.2" fill="#1a1a1a"/>
+  <!-- Mouth -->
+  <path d="M28 44 Q32 48 36 44" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Teeth -->
+  <rect x="29.5" y="44" width="2.2" height="3" rx="0.5" fill="#fff" stroke="#1a1a1a" stroke-width="0.5"/>
+  <rect x="32.3" y="44" width="2.2" height="3" rx="0.5" fill="#fff" stroke="#1a1a1a" stroke-width="0.5"/>
 </svg>
