@@ -1,43 +1,65 @@
-# Astro Starter Kit: Minimal
+<p align="center">
+  <img src="public/favicon.svg" width="80" height="80" alt="Go Gopher">
+</p>
 
-```sh
-npm create astro@latest -- --template minimal
+<h1 align="center">Tour of Go 2.0</h1>
+
+<p align="center">
+  A modern, engaging redesign of <a href="https://go.dev/tour/">Go's official tour</a>.<br>
+  Same content. Better experience.
+</p>
+
+<p align="center">
+  <a href="https://oronbz.github.io/tour-of-go-2.0/">Live Site</a>
+</p>
+
+---
+
+## What is this?
+
+The official [Tour of Go](https://go.dev/tour/) is a great resource — but the one-slide-at-a-time format makes it tedious to work through. This project takes all 92 lessons and repackages them into a modern, dark-themed site with:
+
+- **Chapter-based navigation** — 6 chapters instead of 92 individual slides
+- **Interactive code** — every example links directly to the Go Playground with code pre-filled
+- **Progress tracking** — mark lessons complete, tracked in localStorage
+- **Keyboard navigation** — arrow keys to move between lessons
+- **Conversational tone** — rewritten explanations that are punchier and more engaging
+
+## Tech Stack
+
+- [Astro](https://astro.build) — static site generator
+- [Tailwind CSS v4](https://tailwindcss.com) — styling
+- [Shiki](https://shiki.style) — Go syntax highlighting
+- GitHub Pages — hosting
+
+## Getting Started
+
+```bash
+npm install
+npm run dev       # dev server at localhost:4321
+npm run build     # production build to dist/
+npm run preview   # preview production build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── content/lessons/       # 92 markdown lesson files across 6 chapters
+│   ├── 01-basics/
+│   ├── 02-flow-control/
+│   ├── 03-more-types/
+│   ├── 04-methods/
+│   ├── 05-generics/
+│   └── 06-concurrency/
+├── components/            # Astro components (Header, Sidebar, GoPlayground, etc.)
+├── layouts/               # BaseLayout + ChapterLayout
+├── lib/                   # Chapter metadata, progress helpers, playground IDs
+├── pages/                 # index.astro + [...slug].astro dynamic route
+└── styles/                # Prose typography
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Credits
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Content based on the [official Tour of Go](https://go.dev/tour/) by the Go Authors
+- Go Gopher designed by [Renee French](https://reneefrench.blogspot.com/), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
