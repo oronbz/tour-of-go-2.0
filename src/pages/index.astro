@@ -1,17 +1,81 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import ChapterCard from '../components/ChapterCard.astro';
+import { chapters } from '../lib/chapters';
 
+const lessons = await getCollection('lessons');
+const sorted = lessons.sort((a, b) =>
+  a.data.chapter !== b.data.chapter
+    ? a.data.chapter - b.data.chapter
+    : a.data.lesson - b.data.lesson
+);
+
+// Get first lesson slug for each chapter
+const firstLessonSlugs: Record<number, string> = {};
+for (const chapter of chapters) {
+  const first = sorted.find(l => l.data.chapter === chapter.number);
+  firstLessonSlugs[chapter.number] = first ? first.id : chapter.slug;
+}
+
+const totalLessons = chapters.reduce((sum, c) => sum + c.lessonCount, 0);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home">
+  <Header />
+
+  <!-- Hero section -->
+  <section class="text-center py-20 px-4">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">
+      <span class="text-white">Tour of Go</span>{' '}
+      <span class="text-go-cyan">2.0</span>
+    </h1>
+    <p class="text-xl text-gray-400 mb-3">Learn Go — the actually fun way</p>
+    <p class="text-gray-500 max-w-xl mx-auto mb-8">
+      All the content from Go's official tour, redesigned to be engaging and beautiful.
+      Track your progress as you go.
+    </p>
+    <a
+      href={`/${firstLessonSlugs[1]}`}
+      class="inline-block bg-go-cyan text-white px-6 py-3 rounded-lg font-semibold hover:bg-go-cyan-light transition-colors"
+    >
+      Start Learning &rarr;
+    </a>
+    <p class="mt-6 text-gray-500 text-sm">
+      Your progress: <span id="home-progress-count">0</span> / {totalLessons} lessons
+    </p>
+  </section>
+
+  <!-- Chapter grid section -->
+  <section class="max-w-6xl mx-auto px-4 pb-16">
+    <h2 class="text-2xl font-semibold text-white mb-6">Chapters</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {chapters.map((chapter) => (
+        <ChapterCard
+          chapter={chapter}
+          firstLessonSlug={firstLessonSlugs[chapter.number]}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-gray-600 text-sm">
+    Based on Go's official tour. Built with Astro.
+  </footer>
+</BaseLayout>
+
+<script>
+  import { getProgress } from '../lib/progress';
+
+  function updateHomeProgress() {
+    const progress = getProgress();
+    const count = Object.keys(progress).length;
+    const el = document.getElementById('home-progress-count');
+    if (el) el.textContent = String(count);
+  }
+
+  updateHomeProgress();
+  window.addEventListener('progress-changed', updateHomeProgress);
+</script>
