@@ -1,5 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { chapters } from '../lib/chapters';
 
 interface Props {
   title: string;
@@ -16,27 +19,17 @@ const { title, chapter, allLessons, currentLessonId } = Astro.props;
 const chapterLessons = allLessons
   .filter((l) => l.data.chapter === chapter)
   .sort((a, b) => a.data.lesson - b.data.lesson);
+
+const chapterMeta = chapters.find((c) => c.number === chapter);
+const chapterTitle = chapterMeta ? chapterMeta.title : `Chapter ${chapter}`;
 ---
 
 <BaseLayout title={title}>
   <div class="flex flex-col min-h-screen">
     {/* Header */}
-    <header class="h-16 flex items-center justify-between px-4 lg:px-6 bg-surface-raised border-b border-border shrink-0">
-      <div class="flex items-center gap-4">
-        {/* Mobile hamburger button */}
-        <button
-          id="sidebar-toggle"
-          class="lg:hidden p-2 text-gray-400 hover:text-gray-200"
-          aria-label="Toggle sidebar"
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <span class="text-go-cyan font-semibold text-lg">Tour of Go 2.0</span>
-      </div>
-      <span class="text-gray-400 text-sm">Chapter {chapter}: {title}</span>
-    </header>
+    <div class="sticky top-0 z-50">
+      <Header currentChapter={chapter} />
+    </div>
 
     {/* Body */}
     <div class="flex flex-1 relative">
@@ -51,29 +44,11 @@ const chapterLessons = allLessons
         id="sidebar"
         class="fixed lg:static z-30 top-16 left-0 w-64 bg-surface-raised border-r border-border overflow-y-auto h-[calc(100vh-64px)] lg:sticky lg:top-16 shrink-0 -translate-x-full lg:translate-x-0 transition-transform duration-200"
       >
-        <nav class="py-4">
-          <ul class="space-y-1">
-            {chapterLessons.map((lesson) => {
-              const isCurrent = lesson.id === currentLessonId;
-              return (
-                <li>
-                  <a
-                    href={`/${lesson.id}`}
-                    class:list={[
-                      'block px-4 py-2 text-sm transition-colors',
-                      isCurrent
-                        ? 'bg-surface-hover text-white border-l-2 border-go-cyan'
-                        : 'text-gray-400 hover:text-gray-200 hover:bg-surface-hover/50',
-                    ]}
-                  >
-                    <span class="text-gray-500 mr-2">{lesson.data.lesson}.</span>
-                    {lesson.data.title}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <Sidebar
+          lessons={chapterLessons}
+          currentLessonId={currentLessonId}
+          chapterTitle={chapterTitle}
+        />
       </aside>
 
       {/* Main content */}
@@ -86,7 +61,8 @@ const chapterLessons = allLessons
   </div>
 
   <script>
-    const toggle = document.getElementById('sidebar-toggle');
+    // Mobile sidebar toggle — uses the hamburger from the Header component
+    const toggle = document.getElementById('header-menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
 
@@ -102,7 +78,8 @@ const chapterLessons = allLessons
       overlay?.classList.add('hidden');
     }
 
-    toggle?.addEventListener('click', () => {
+    toggle?.addEventListener('click', (e) => {
+      e.preventDefault();
       const isOpen = sidebar?.classList.contains('translate-x-0');
       if (isOpen) {
         closeSidebar();

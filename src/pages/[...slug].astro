@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from 'astro:content';
+import ChapterLayout from '../layouts/ChapterLayout.astro';
+import GoPlayground from '../components/GoPlayground.astro';
+import ProgressToggle from '../components/ProgressToggle.astro';
+import LessonNav from '../components/LessonNav.astro';
+import { chapters } from '../lib/chapters';
+
+export async function getStaticPaths() {
+  const lessons = await getCollection('lessons');
+  const sorted = lessons.sort((a, b) =>
+    a.data.chapter !== b.data.chapter
+      ? a.data.chapter - b.data.chapter
+      : a.data.lesson - b.data.lesson
+  );
+  return sorted.map((lesson, index) => ({
+    params: { slug: lesson.id },
+    props: {
+      lesson,
+      prev: index > 0 ? sorted[index - 1] : null,
+      next: index < sorted.length - 1 ? sorted[index + 1] : null,
+      chapterLessons: sorted.filter(l => l.data.chapter === lesson.data.chapter),
+    },
+  }));
+}
+
+const { lesson, prev, next, chapterLessons } = Astro.props;
+const { Content } = await render(lesson);
+const chapter = chapters.find(c => c.number === lesson.data.chapter)!;
+---
+<ChapterLayout
+  title={lesson.data.title}
+  chapter={lesson.data.chapter}
+  allLessons={chapterLessons}
+  currentLessonId={lesson.id}
+>
+  <article class="prose">
+    <h1>{lesson.data.title}</h1>
+    <Content />
+  </article>
+  {lesson.data.code && <GoPlayground code={lesson.data.code} />}
+  <ProgressToggle lessonId={lesson.id} />
+  <LessonNav
+    prev={prev ? { id: prev.id, title: prev.data.title } : null}
+    next={next ? { id: next.id, title: next.data.title } : null}
+  />
+</ChapterLayout>
