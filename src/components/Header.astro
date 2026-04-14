@@ -20,7 +20,7 @@ const { currentChapter } = Astro.props;
     <nav class="hidden lg:flex items-center gap-1">
       {chapters.map((chapter) => (
         <a
-          href="/"
+          href={`/${chapter.firstLesson}`}
           class:list={[
             'px-3 py-1.5 rounded text-sm transition-colors',
             currentChapter === chapter.number
