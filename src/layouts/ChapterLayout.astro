@@ -1,0 +1,116 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  chapter: number;
+  allLessons: Array<{
+    id: string;
+    data: { title: string; lesson: number; chapter: number };
+  }>;
+  currentLessonId: string;
+}
+
+const { title, chapter, allLessons, currentLessonId } = Astro.props;
+
+const chapterLessons = allLessons
+  .filter((l) => l.data.chapter === chapter)
+  .sort((a, b) => a.data.lesson - b.data.lesson);
+---
+
+<BaseLayout title={title}>
+  <div class="flex flex-col min-h-screen">
+    {/* Header */}
+    <header class="h-16 flex items-center justify-between px-4 lg:px-6 bg-surface-raised border-b border-border shrink-0">
+      <div class="flex items-center gap-4">
+        {/* Mobile hamburger button */}
+        <button
+          id="sidebar-toggle"
+          class="lg:hidden p-2 text-gray-400 hover:text-gray-200"
+          aria-label="Toggle sidebar"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <span class="text-go-cyan font-semibold text-lg">Tour of Go 2.0</span>
+      </div>
+      <span class="text-gray-400 text-sm">Chapter {chapter}: {title}</span>
+    </header>
+
+    {/* Body */}
+    <div class="flex flex-1 relative">
+      {/* Sidebar overlay for mobile */}
+      <div
+        id="sidebar-overlay"
+        class="fixed inset-0 bg-black/50 z-20 hidden lg:hidden"
+      ></div>
+
+      {/* Sidebar */}
+      <aside
+        id="sidebar"
+        class="fixed lg:static z-30 top-16 left-0 w-64 bg-surface-raised border-r border-border overflow-y-auto h-[calc(100vh-64px)] lg:sticky lg:top-16 shrink-0 -translate-x-full lg:translate-x-0 transition-transform duration-200"
+      >
+        <nav class="py-4">
+          <ul class="space-y-1">
+            {chapterLessons.map((lesson) => {
+              const isCurrent = lesson.id === currentLessonId;
+              return (
+                <li>
+                  <a
+                    href={`/${lesson.id}`}
+                    class:list={[
+                      'block px-4 py-2 text-sm transition-colors',
+                      isCurrent
+                        ? 'bg-surface-hover text-white border-l-2 border-go-cyan'
+                        : 'text-gray-400 hover:text-gray-200 hover:bg-surface-hover/50',
+                    ]}
+                  >
+                    <span class="text-gray-500 mr-2">{lesson.data.lesson}.</span>
+                    {lesson.data.title}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </aside>
+
+      {/* Main content */}
+      <main class="flex-1 overflow-y-auto p-8 lg:p-12">
+        <div class="max-w-3xl mx-auto">
+          <slot />
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+      sidebar?.classList.remove('-translate-x-full');
+      sidebar?.classList.add('translate-x-0');
+      overlay?.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+      sidebar?.classList.add('-translate-x-full');
+      sidebar?.classList.remove('translate-x-0');
+      overlay?.classList.add('hidden');
+    }
+
+    toggle?.addEventListener('click', () => {
+      const isOpen = sidebar?.classList.contains('translate-x-0');
+      if (isOpen) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+
+    overlay?.addEventListener('click', closeSidebar);
+  </script>
+</BaseLayout>
