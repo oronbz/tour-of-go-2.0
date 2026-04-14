@@ -1,0 +1,80 @@
+---
+import { chapters } from '../lib/chapters';
+
+interface Props {
+  currentChapter?: number;
+}
+
+const { currentChapter } = Astro.props;
+---
+
+<header class="bg-surface border-b border-border h-16 sticky top-0 z-50">
+  <div class="flex items-center justify-between h-full px-4 lg:px-6">
+    {/* Left: Logo */}
+    <a href="/" class="flex items-center gap-1 font-semibold text-lg shrink-0">
+      <span class="text-white">Tour of Go</span>
+      <span class="text-go-cyan">2.0</span>
+    </a>
+
+    {/* Center: Chapter navigation (hidden on mobile) */}
+    <nav class="hidden lg:flex items-center gap-1">
+      {chapters.map((chapter) => (
+        <a
+          href="/"
+          class:list={[
+            'px-3 py-1.5 rounded text-sm transition-colors',
+            currentChapter === chapter.number
+              ? 'text-go-cyan font-medium'
+              : 'text-gray-400 hover:text-gray-200',
+          ]}
+        >
+          {chapter.title}
+        </a>
+      ))}
+    </nav>
+
+    {/* Right: Progress indicator + mobile hamburger */}
+    <div class="flex items-center gap-3">
+      <span id="overall-progress" class="text-gray-400 text-sm"></span>
+      {/* Mobile hamburger (visible only on < lg when not inside ChapterLayout) */}
+      <button
+        id="header-menu-toggle"
+        class="lg:hidden p-2 text-gray-400 hover:text-gray-200"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile nav dropdown */}
+  <nav
+    id="header-mobile-nav"
+    class="hidden lg:hidden bg-surface-raised border-b border-border px-4 py-2"
+  >
+    {chapters.map((chapter) => (
+      <a
+        href="/"
+        class:list={[
+          'block px-3 py-2 rounded text-sm transition-colors',
+          currentChapter === chapter.number
+            ? 'text-go-cyan font-medium'
+            : 'text-gray-400 hover:text-gray-200',
+        ]}
+      >
+        {chapter.title}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('header-menu-toggle');
+  const mobileNav = document.getElementById('header-mobile-nav');
+
+  toggle?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('hidden');
+  });
+</script>

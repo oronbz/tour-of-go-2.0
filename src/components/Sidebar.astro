@@ -1,0 +1,74 @@
+---
+interface Props {
+  lessons: Array<{ id: string; data: { title: string; lesson: number } }>;
+  currentLessonId: string;
+  chapterTitle: string;
+}
+
+const { lessons, currentLessonId, chapterTitle } = Astro.props;
+---
+
+<div class="p-4">
+  <h2 class="text-lg font-semibold text-white mb-4">{chapterTitle}</h2>
+
+  <ul class="space-y-1">
+    {lessons.map((lesson) => {
+      const isCurrent = lesson.id === currentLessonId;
+      return (
+        <li>
+          <a
+            href={`/${lesson.id}`}
+            data-lesson-id={lesson.id}
+            class:list={[
+              'flex items-center gap-3 px-3 py-2 rounded text-sm transition-colors',
+              isCurrent
+                ? 'bg-surface-hover border-l-2 border-go-cyan text-white'
+                : 'text-gray-400 hover:text-gray-200 hover:bg-surface-hover/50',
+            ]}
+          >
+            <span
+              class:list={[
+                'lesson-badge w-6 h-6 rounded-full text-xs flex items-center justify-center shrink-0',
+                isCurrent
+                  ? 'bg-go-cyan text-white'
+                  : 'bg-surface text-gray-500',
+              ]}
+            >
+              {lesson.data.lesson}
+            </span>
+            <span class="truncate">{lesson.data.title}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</div>
+
+<style>
+  .completed .lesson-badge {
+    background-color: var(--color-go-cyan);
+    color: #fff;
+  }
+  .completed .lesson-badge::after {
+    content: ' \2713';
+    font-size: 0.5rem;
+    margin-left: 1px;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'tour-of-go-progress';
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const data = JSON.parse(raw);
+      const completed = data.completed || {};
+      document.querySelectorAll('[data-lesson-id]').forEach((el) => {
+        const id = el.getAttribute('data-lesson-id');
+        if (id && completed[id]) {
+          el.classList.add('completed');
+        }
+      });
+    }
+  } catch {}
+</script>

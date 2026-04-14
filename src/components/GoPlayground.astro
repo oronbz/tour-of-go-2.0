@@ -1,0 +1,35 @@
+---
+import { Code } from 'astro:components';
+
+interface Props {
+  code: string;
+}
+
+const { code } = Astro.props;
+---
+
+<div class="playground my-6 rounded-lg overflow-hidden border border-border">
+  <div class="flex items-center justify-between px-4 py-2 bg-surface-raised border-b border-border">
+    <span class="text-sm text-gray-400 font-mono">main.go</span>
+    <a
+      href="https://go.dev/play/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 px-3 py-1 rounded text-sm bg-go-cyan text-white hover:bg-go-cyan-light transition-colors font-medium"
+    >
+      ▶ Run in Playground
+    </a>
+  </div>
+  <div class="playground-code">
+    <Code code={code} lang="go" theme="github-dark" />
+  </div>
+</div>
+
+<style>
+  .playground-code :global(pre) {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    border-left: none;
+  }
+</style>
