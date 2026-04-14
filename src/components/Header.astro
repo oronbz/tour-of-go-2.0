@@ -74,8 +74,12 @@ const { currentChapter } = Astro.props;
 <script>
   const toggle = document.getElementById('header-menu-toggle');
   const mobileNav = document.getElementById('header-mobile-nav');
+  const sidebar = document.getElementById('sidebar');
 
   toggle?.addEventListener('click', () => {
+    // If a sidebar exists (lesson pages), don't toggle the header dropdown —
+    // the ChapterLayout script handles the sidebar instead.
+    if (sidebar) return;
     mobileNav?.classList.toggle('hidden');
   });
 </script>
