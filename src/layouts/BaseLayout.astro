@@ -13,7 +13,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en" class="dark">
+<html lang="en" class="dark" style="scroll-behavior: smooth;">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,5 +29,9 @@ const {
   </head>
   <body class="bg-surface text-gray-100 min-h-screen font-sans">
     <slot />
+    <script>
+      // Scroll to top on page load (for MPA navigations)
+      window.scrollTo(0, 0);
+    </script>
   </body>
 </html>

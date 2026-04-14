@@ -44,4 +44,31 @@ const chapter = chapters.find(c => c.number === lesson.data.chapter)!;
     prev={prev ? { id: prev.id, title: prev.data.title } : null}
     next={next ? { id: next.id, title: next.data.title } : null}
   />
+
+  <!-- Keyboard navigation hint (desktop only) -->
+  <p class="hidden lg:block text-center text-gray-600 text-xs mt-6">
+    &larr; &rarr; Use arrow keys to navigate
+  </p>
+
+  <!-- Hidden element for keyboard nav data -->
+  <div id="lesson-nav-data" class="hidden" data-prev={prev ? `/${prev.id}` : ''} data-next={next ? `/${next.id}` : ''} />
+
+  <script>
+    const navData = document.getElementById('lesson-nav-data');
+    if (navData) {
+      const prevUrl = navData.dataset.prev;
+      const nextUrl = navData.dataset.next;
+      document.addEventListener('keydown', (e) => {
+        // Don't navigate if user is typing in an input
+        const tag = (e.target as HTMLElement).tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+        if (e.key === 'ArrowLeft' && prevUrl) {
+          window.location.href = prevUrl;
+        } else if (e.key === 'ArrowRight' && nextUrl) {
+          window.location.href = nextUrl;
+        }
+      });
+    }
+  </script>
 </ChapterLayout>

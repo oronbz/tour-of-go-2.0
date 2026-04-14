@@ -7,7 +7,7 @@ interface Props {
 const { prev, next } = Astro.props;
 ---
 
-<nav class="flex justify-between items-center mt-12 pt-8 border-t border-border">
+<nav class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 sm:gap-0 mt-12 pt-8 border-t border-border">
   {prev ? (
     <a href={`/${prev.id}`} class="text-gray-400 hover:text-go-cyan transition-colors group">
       <span class="block text-xs text-gray-500 group-hover:text-go-cyan/70 mb-1">Previous</span>
