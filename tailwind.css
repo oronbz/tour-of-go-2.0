@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-go-cyan: #00ADD8;
+  --color-go-cyan-light: #5DC9E2;
+  --color-go-cyan-dark: #007D9C;
+  --color-go-navy: #00253E;
+  --color-surface: #0a0f1a;
+  --color-surface-raised: #111827;
+  --color-surface-hover: #1f2937;
+  --color-border: #1e293b;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
