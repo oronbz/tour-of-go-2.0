@@ -6,6 +6,7 @@ import ProgressToggle from '../components/ProgressToggle.astro';
 import LessonNav from '../components/LessonNav.astro';
 import { chapters } from '../lib/chapters';
 import { url } from '../lib/url';
+import playgroundIds from '../lib/playground-ids.json';
 
 export async function getStaticPaths() {
   const lessons = await getCollection('lessons');
@@ -39,7 +40,7 @@ const chapter = chapters.find(c => c.number === lesson.data.chapter)!;
     <h1>{lesson.data.title}</h1>
     <Content />
   </article>
-  {lesson.data.code && <GoPlayground code={lesson.data.code} />}
+  {lesson.data.code && <GoPlayground code={lesson.data.code} shareId={(playgroundIds as Record<string, string>)[lesson.id]} />}
   <ProgressToggle lessonId={lesson.id} />
   <LessonNav
     prev={prev ? { id: prev.id, title: prev.data.title } : null}

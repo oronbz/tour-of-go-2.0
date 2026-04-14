@@ -3,16 +3,20 @@ import { Code } from 'astro:components';
 
 interface Props {
   code: string;
+  shareId?: string;
 }
 
-const { code } = Astro.props;
+const { code, shareId } = Astro.props;
+const playgroundUrl = shareId
+  ? `https://go.dev/play/p/${shareId}`
+  : 'https://go.dev/play/';
 ---
 
 <div class="playground my-6 rounded-lg overflow-hidden border border-border">
   <div class="flex items-center justify-between flex-wrap gap-2 px-4 py-2 bg-surface-raised border-b border-border">
     <span class="text-sm text-gray-400 font-mono">main.go</span>
     <a
-      href="https://go.dev/play/"
+      href={playgroundUrl}
       target="_blank"
       rel="noopener noreferrer"
       class="inline-flex items-center gap-1.5 px-3 py-1 rounded text-sm bg-go-cyan text-white hover:bg-go-cyan-light transition-colors font-medium"
