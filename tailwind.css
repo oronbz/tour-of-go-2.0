@@ -1,27 +1,26 @@
 @import "tailwindcss";
 
-/* Dark scrollbars globally */
-* {
+/* Sidebar scrollbar — match the main content scrollbar */
+#sidebar {
   scrollbar-width: thin;
-  scrollbar-color: #1e293b #0a0f1a;
+  scrollbar-color: #334155 transparent;
 }
 
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+#sidebar::-webkit-scrollbar {
+  width: 6px;
 }
 
-*::-webkit-scrollbar-track {
-  background: #0a0f1a;
+#sidebar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-*::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
+#sidebar::-webkit-scrollbar-thumb {
   background: #334155;
+  border-radius: 3px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
 @theme {
