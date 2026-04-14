@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import ChapterCard from '../components/ChapterCard.astro';
 import { chapters } from '../lib/chapters';
+import { url } from '../lib/url';
 
 const lessons = await getCollection('lessons');
 const sorted = lessons.sort((a, b) =>
@@ -37,7 +38,7 @@ const totalLessons = chapters.reduce((sum, c) => sum + c.lessonCount, 0);
       Track your progress as you go.
     </p>
     <a
-      href={`/${firstLessonSlugs[1]}`}
+      href={url(`/${firstLessonSlugs[1]}`)}
       class="inline-block bg-go-cyan text-white px-6 py-3 rounded-lg font-semibold hover:bg-go-cyan-light transition-colors"
     >
       Start Learning &rarr;

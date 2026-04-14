@@ -1,4 +1,6 @@
 ---
+import { url } from '../lib/url';
+
 interface Props {
   prev: { id: string; title: string } | null;
   next: { id: string; title: string } | null;
@@ -9,7 +11,7 @@ const { prev, next } = Astro.props;
 
 <nav class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 sm:gap-0 mt-12 pt-8 border-t border-border">
   {prev ? (
-    <a href={`/${prev.id}`} class="text-gray-400 hover:text-go-cyan transition-colors group">
+    <a href={url(`/${prev.id}`)} class="text-gray-400 hover:text-go-cyan transition-colors group">
       <span class="block text-xs text-gray-500 group-hover:text-go-cyan/70 mb-1">Previous</span>
       <span class="flex items-center gap-1">
         <span aria-hidden="true">&larr;</span>
@@ -21,7 +23,7 @@ const { prev, next } = Astro.props;
   )}
 
   {next ? (
-    <a href={`/${next.id}`} class="text-gray-400 hover:text-go-cyan transition-colors group text-right">
+    <a href={url(`/${next.id}`)} class="text-gray-400 hover:text-go-cyan transition-colors group text-right">
       <span class="block text-xs text-gray-500 group-hover:text-go-cyan/70 mb-1">Next</span>
       <span class="flex items-center gap-1">
         <span>{next.title}</span>

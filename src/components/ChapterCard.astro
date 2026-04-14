@@ -1,6 +1,7 @@
 ---
 import type { Chapter } from '../lib/chapters';
 import ProgressBar from './ProgressBar.astro';
+import { url } from '../lib/url';
 
 interface Props {
   chapter: Chapter;
@@ -10,7 +11,7 @@ interface Props {
 const { chapter, firstLessonSlug } = Astro.props;
 ---
 
-<a href={"/" + firstLessonSlug} class="block group">
+<a href={url("/" + firstLessonSlug)} class="block group">
   <div class="bg-surface-raised rounded-xl border border-border p-6 hover:border-go-cyan transition-all duration-200 h-full">
     <!-- Chapter number badge -->
     <div class="w-10 h-10 rounded-lg bg-go-cyan/10 text-go-cyan font-bold text-lg flex items-center justify-center mb-4">

@@ -5,6 +5,7 @@ import GoPlayground from '../components/GoPlayground.astro';
 import ProgressToggle from '../components/ProgressToggle.astro';
 import LessonNav from '../components/LessonNav.astro';
 import { chapters } from '../lib/chapters';
+import { url } from '../lib/url';
 
 export async function getStaticPaths() {
   const lessons = await getCollection('lessons');
@@ -51,7 +52,7 @@ const chapter = chapters.find(c => c.number === lesson.data.chapter)!;
   </p>
 
   <!-- Hidden element for keyboard nav data -->
-  <div id="lesson-nav-data" class="hidden" data-prev={prev ? `/${prev.id}` : ''} data-next={next ? `/${next.id}` : ''} />
+  <div id="lesson-nav-data" class="hidden" data-prev={prev ? url(`/${prev.id}`) : ''} data-next={next ? url(`/${next.id}`) : ''} />
 
   <script>
     const navData = document.getElementById('lesson-nav-data');
