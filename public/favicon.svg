@@ -1,27 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Ears -->
-  <ellipse cx="16" cy="14" rx="8" ry="10" fill="#00ADD8"/>
-  <ellipse cx="48" cy="14" rx="8" ry="10" fill="#00ADD8"/>
-  <ellipse cx="16" cy="14" rx="5" ry="7" fill="#5DC9E2"/>
-  <ellipse cx="48" cy="14" rx="5" ry="7" fill="#5DC9E2"/>
-  <!-- Head -->
-  <ellipse cx="32" cy="34" rx="26" ry="28" fill="#00ADD8"/>
-  <!-- Eyes (white) -->
-  <ellipse cx="22" cy="28" rx="9" ry="10" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-  <ellipse cx="42" cy="28" rx="9" ry="10" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-  <!-- Pupils -->
-  <circle cx="25" cy="29" r="4.5" fill="#1a1a1a"/>
-  <circle cx="45" cy="29" r="4.5" fill="#1a1a1a"/>
-  <!-- Pupil highlights -->
-  <circle cx="26.5" cy="27.5" r="1.5" fill="#fff"/>
-  <circle cx="46.5" cy="27.5" r="1.5" fill="#fff"/>
-  <!-- Nose/snout area -->
-  <ellipse cx="32" cy="42" rx="12" ry="8" fill="#E0D5C0"/>
-  <!-- Nose -->
-  <ellipse cx="32" cy="39" rx="3" ry="2.2" fill="#1a1a1a"/>
-  <!-- Mouth -->
-  <path d="M28 44 Q32 48 36 44" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Go gopher favicon - based on go.dev's official gopher favicon -->
+  <!-- Shadow ears -->
+  <ellipse cx="6.2" cy="7.4" rx="3.6" ry="3.8" fill="#384e54" transform="rotate(-30 6.2 7.4)"/>
+  <ellipse cx="25.8" cy="7.4" rx="3.6" ry="3.8" fill="#384e54" transform="rotate(30 25.8 7.4)"/>
+  <!-- Body -->
+  <path d="M16 3c-9 0-12 3.7-12 9v20h24V12c0-5.3-3-9-12-9z" fill="#76e1fe"/>
+  <!-- Left ear -->
+  <path d="M4.6 4.7c.46.26 1.82 1.2 1.98 1.65.18.5.16 1.07-.11 1.55-.35.61-1.01.95-1.7.94-.34-.01-1.72-.64-2.04-.82-.98-.55-1.35-1.74-.83-2.66.52-.92 1.73-1.21 2.7-.66z" fill="#76e1fe"/>
+  <!-- Right ear -->
+  <path d="M27.1 4.7c-.46.26-1.82 1.2-1.98 1.65-.18.5-.16 1.07.11 1.55.35.61 1.01.95 1.7.94.34-.01 1.72-.64 2.04-.82.98-.55 1.35-1.74.83-2.66-.52-.92-1.73-1.21-2.7-.66z" fill="#76e1fe"/>
+  <!-- Left eye white -->
+  <circle cx="10.3" cy="10" r="4.8" fill="#fff"/>
+  <!-- Right eye white -->
+  <circle cx="21.2" cy="10" r="4.7" fill="#fff"/>
+  <!-- Teeth background -->
+  <rect x="14.1" y="15.6" width="3.7" height="4.1" rx=".7" fill="rgba(0,0,0,.33)"/>
   <!-- Teeth -->
-  <rect x="29.5" y="44" width="2.2" height="3" rx="0.5" fill="#fff" stroke="#1a1a1a" stroke-width="0.5"/>
-  <rect x="32.3" y="44" width="2.2" height="3" rx="0.5" fill="#fff" stroke="#1a1a1a" stroke-width="0.5"/>
+  <rect x="14.1" y="14.9" width="3.7" height="4.1" rx=".7" fill="#fffcfb"/>
+  <!-- Snout -->
+  <path d="M20 15.3c0 .57-.43.86-1.14 1-.29.06-.63.1-1 .12-.56.03-1.21.03-1.89.03-.67 0-1.31 0-1.86-.03-.31-.02-.59-.04-.84-.08-.81-.13-1.33-.42-1.33-1.03 0-1.16 1.81-2.1 4.03-2.1 2.23 0 4.03.94 4.03 2.1z" fill="#c38c74"/>
+  <!-- Nose -->
+  <ellipse cx="15.9" cy="13.5" rx="2.1" ry="1.3" fill="#23201f"/>
+  <!-- Left pupil -->
+  <circle cx="12.4" cy="10" r="2" fill="#171311"/>
+  <!-- Right pupil -->
+  <circle cx="23.1" cy="10" r="2" fill="#171311"/>
+  <!-- Left whiskers -->
+  <line x1="5" y1="6.9" x2="3" y2="6.2" stroke="#384e54" stroke-width=".4" stroke-linecap="round"/>
+  <line x1="4.4" y1="6.6" x2="3" y2="7.3" stroke="#384e54" stroke-width=".4" stroke-linecap="round"/>
+  <!-- Right whiskers -->
+  <line x1="26.6" y1="6.8" x2="28.7" y2="6.1" stroke="#384e54" stroke-width=".4" stroke-linecap="round"/>
+  <line x1="27.3" y1="6.3" x2="28.7" y2="7" stroke="#384e54" stroke-width=".4" stroke-linecap="round"/>
 </svg>
