@@ -1,0 +1,48 @@
+---
+interface Props { lessonId: string; }
+const { lessonId } = Astro.props;
+---
+<div class="progress-toggle mt-8 pt-6 border-t border-border" data-lesson-id={lessonId}>
+  <label class="flex items-center gap-3 cursor-pointer select-none group">
+    <div class="relative">
+      <input type="checkbox" class="progress-checkbox peer sr-only" />
+      <div class="w-6 h-6 rounded border-2 border-gray-600 peer-checked:bg-go-cyan peer-checked:border-go-cyan flex items-center justify-center transition-colors">
+        <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+    </div>
+    <span class="text-gray-400 group-hover:text-gray-300 transition-colors">Mark as complete</span>
+  </label>
+</div>
+
+<script>
+  import { isLessonComplete, setLessonComplete } from '../lib/progress';
+
+  document.querySelectorAll('.progress-toggle').forEach((el) => {
+    const lessonId = el.getAttribute('data-lesson-id')!;
+    const checkbox = el.querySelector('input') as HTMLInputElement;
+
+    // Initialize from localStorage
+    checkbox.checked = isLessonComplete(lessonId);
+
+    // Update visual state on load
+    if (checkbox.checked) {
+      el.querySelector('span')!.textContent = 'Completed';
+      el.querySelector('span')!.classList.replace('text-gray-400', 'text-go-cyan');
+    }
+
+    checkbox.addEventListener('change', () => {
+      setLessonComplete(lessonId, checkbox.checked);
+      const label = el.querySelector('span')!;
+      if (checkbox.checked) {
+        label.textContent = 'Completed';
+        label.classList.replace('text-gray-400', 'text-go-cyan');
+      } else {
+        label.textContent = 'Mark as complete';
+        label.classList.replace('text-go-cyan', 'text-gray-400');
+      }
+      window.dispatchEvent(new CustomEvent('progress-changed'));
+    });
+  });
+</script>
